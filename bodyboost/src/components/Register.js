@@ -17,7 +17,7 @@ const handleSubmit = (event) => {
         password: password
     };
 
-    axios.post('http://localhost:4000/register', registerData)
+    axios.post('http://localhost:4000/api/users/register', registerData)
         .then(res => {
             console.log(res.data);
         })
