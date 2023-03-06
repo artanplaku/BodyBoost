@@ -1,0 +1,35 @@
+input {
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid gray;
+    border-radius: 5px;
+  }
+
+  /* Style the buttons */
+  button {
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+  }
+
+  /* Style the "Add Exercise" button differently */
+  button[type="button"] {
+    background-color: gray;
+  }
+
+  /* Style the workout titles */
+  h2 {
+    margin: 20px 0;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  /* Style the workout exercises */
+  li {
+    margin: 5px;
+    font-size: 18px;
+  }
