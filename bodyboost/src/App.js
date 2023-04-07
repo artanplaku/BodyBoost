@@ -33,7 +33,6 @@ function App() {
       <Route path="/challenges" element={<Challenges />} />
       <Route path="/community" element={<Community />} />
     </Routes>
-<div>Quoc was here </div>
       </div>
   </div>
   );
