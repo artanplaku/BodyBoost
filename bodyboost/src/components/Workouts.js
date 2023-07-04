@@ -41,14 +41,6 @@ const Workouts = () => {
         fetchWorkouts();
       }, []);
       
-      
-
-//-------------------------------------------------------------------------
-// const handleAddSet = (index) => {
-//     const newExercises = [...exercises];
-//     newExercises[index].sets.push({ reps: 0, weight: 0 });
-//     setExercises(newExercises);
-// };
 //-------------------------------------------------------------------------
 const handleAddExercise = () => {
     setExercises([
@@ -75,21 +67,7 @@ const handleEdit = (workout) => {
     setTitle(workout.title);
     setExercises(workout.exercises);
   };
-//-------------------------------------------------------------------------
-//   const handleCancelEdit = () => {
-//     setEditingWorkoutData({});
-//     setEditingWorkoutId(null);
-//     setIsEditing(false);
-//     setTitle('');
-//     setExercises([]);
-
-//   };
-//-------------------------------------------------------------------------
-//   const handleSave = () => {
-//     handleSubmit();
-//   };
-  
-//-------------------------------------------------------------------------
+ //------------------------------------------------------------------------- 
 const handleSubmit = async (event) => {
     event.preventDefault();
   

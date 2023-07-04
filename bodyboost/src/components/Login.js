@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
+import '../styles/Login.css'
 
 const Login = () => {
 
@@ -31,9 +32,8 @@ const handleSubmit = (event) => {
 };
 
   return (
-    <div>
-
-      <form onSubmit={handleSubmit}>
+    <div className='login-container'>
+      <form className='login-form' onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Username"
@@ -47,8 +47,11 @@ const handleSubmit = (event) => {
           onChange={(event) => setPassword(event.target.value)}
           />
         <button type="submit">Submit</button>
+      <div className='register-link'>
+        Dont have an account? 
+        <Link to='/register'>Register here</Link>
+        </div>
       </form>
-      <div>Dont have an account? <Link to='/register'>Register here</Link></div>
    </div>
   )
 }
