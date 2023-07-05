@@ -1,6 +1,8 @@
-import React from 'react'
-import { useState } from 'react'
+import React from 'react';
+import { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import '../styles/Register.css'
 
 const Register = () => {
 
@@ -27,27 +29,33 @@ const handleSubmit = (event) => {
 };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div className='register-container'>
+    <form className='register-form' onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Username"
         value={username}
         onChange={(event) => setUserName(event.target.value)}
-      />
+        />
       <input
         type="email"
         placeholder="Email"
         value={email}
         onChange={(event) => setEmail(event.target.value)}
-      />
+        />
       <input
         type="password"
         placeholder="Password"
         value={password}
         onChange={(event) => setPassword(event.target.value)}
-      />
+        />
       <button type="submit">Submit</button>
+      <div className='login-link'>
+        Already have an account? 
+        <Link to='/register'>Login</Link>
+        </div>
     </form>
+  </div>
   )
 }
 
