@@ -19,7 +19,7 @@ const handleSubmit = (event) => {
         password: password
     };
 
-    axios.post('http://localhost:4000/api/users/login', loginData)
+    axios.post('https://bodyboostbackend.onrender.com/api/users/login', loginData)
         .then(res => {
             console.log(res.data);
             localStorage.setItem('token', res.data.token);

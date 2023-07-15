@@ -27,7 +27,7 @@ const Workouts = () => {
             const userId = decodedToken.id;
             setUserId(userId);
       
-            const response = await axios.get(`http://localhost:4000/api/workouts?userId=${userId}`, {
+            const response = await axios.get(`https://bodyboostbackend.onrender.com/api/workouts?userId=${userId}`, {
               headers: {
                 'Authorization': `Bearer ${token}`,
               },

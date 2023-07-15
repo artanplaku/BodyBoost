@@ -19,7 +19,7 @@ const handleSubmit = (event) => {
         password: password
     };
 
-    axios.post('http://localhost:4000/api/users/register', registerData)
+    axios.post('https://bodyboostbackend.onrender.com/api/users/register', registerData)
         .then(res => {
             console.log(res.data);
         })
@@ -52,7 +52,7 @@ const handleSubmit = (event) => {
       <button type="submit">Submit</button>
       <div className='login-link'>
         Already have an account? 
-        <Link to='/register'>Login</Link>
+        <Link to='/login'>Login</Link>
         </div>
     </form>
   </div>
