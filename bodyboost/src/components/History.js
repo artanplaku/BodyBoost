@@ -47,7 +47,7 @@ const History = () => {
 
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', height: 1000, alignItems: 'center'}}>
+    <div style={{ display: 'flex', justifyContent: 'center', height: '100vh', alignItems: 'center'}}>
   <BarChart
     width={500}
     height={300}
