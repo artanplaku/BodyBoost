@@ -134,7 +134,7 @@ const handleSubmit = async (event) => {
     }
 
     try {
-      await axios.delete(`http://localhost:4000/api/workouts/${id}`, {
+      await axios.delete(`https://bodyboostbackend.onrender.com/api/workouts/${id}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
