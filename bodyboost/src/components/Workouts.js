@@ -48,8 +48,8 @@ const handleAddExercise = () => {
         {
           name: "",
           sets: [{ reps: 0, weight: 0 }],
-          reps: 0,
-          weight: 0,
+          reps: "",
+          weight: "",
         },
       ]);
   };
@@ -108,7 +108,7 @@ const handleSubmit = async (event) => {
       console.log('workoutData:', workoutData);
   
       try {
-        const response = await axios.post('http://localhost:4000/api/workouts', workoutData, {
+        const response = await axios.post('https://bodyboostbackend.onrender.com/api/workouts', workoutData, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'X-User-Id': workoutData.userId,
@@ -154,7 +154,7 @@ const handleSubmit = async (event) => {
     }
 
     try {
-      const response = await axios.put(`http://localhost:4000/api/workouts/${id}`, editedData, {
+      const response = await axios.put(`https://bodyboostbackend.onrender.com/api/workouts/${id}`, editedData, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -172,7 +172,7 @@ const handleSubmit = async (event) => {
     <form onSubmit={handleSubmit}>
       <input
         type="text"
-        placeholder="Workout Title"
+        placeholder="Muscle Target"
         value={title}
         onChange={(event) => setTitle(event.target.value)}
       />
@@ -214,7 +214,7 @@ const handleSubmit = async (event) => {
     <ul>
       {workout.exercises.map((exercise, index) => (
         <li key={index}>
-          {exercise.name} - {exercise.sets} sets x {exercise.reps} reps x {exercise.weight} lbs
+        {exercise.name} - {exercise.sets} sets x {exercise.reps} reps x {exercise.weight} lbs
         </li>
       ))}
     </ul>
