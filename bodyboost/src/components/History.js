@@ -29,13 +29,21 @@ const History = () => {
         const workouts = response.data;
         const grouped = {};
         workouts.forEach(workout => {
-          const date = moment(workout.date).format('YYYY-MM-DD');
-          if (!grouped[date]) {
-            grouped[date] = { name: date, Workouts: 0, Weight: 0 };
-          }
-          grouped[date].Workouts += 1;
-          grouped[date].Weight += workout.weight;
+          workout.exercises.forEach(exercise => {
+            const date = moment(exercise.date).format('YYYY-MM-DD');
+            if (!grouped[date]) {
+              grouped[date] = { name: date, Workouts: 0, Weight: 0 };
+            }
+            grouped[date].Workouts += 1;
+            if (typeof exercise.weight === 'number') {
+              grouped[date].Weight += exercise.weight;
+            } else {
+              console.warn('Non-number weight:', exercise.weight);
+            }
+          });
         });
+        
+        console.log('Grouped workouts:', grouped);
         setData(Object.values(grouped));
       } catch (error) {
         console.error(error);
