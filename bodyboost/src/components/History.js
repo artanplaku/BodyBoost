@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LineChart, Line } from 'recharts';
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 import moment from 'moment';
@@ -7,7 +7,8 @@ import moment from 'moment';
 
 const History = () => {
   const [data, setData] = useState([]);
-  const [userId, setUserId] = useState('')
+  const [userId, setUserId] = useState('');
+  const [chartType, setChartType] = useState('bar');
   useEffect(() => {
     const fetchWorkouts = async () => {
       const token = localStorage.getItem('token');
@@ -53,25 +54,53 @@ const History = () => {
 
   }, []);
 
+  const renderChart = () => {
+    if (chartType === 'bar') {
+      return (
+        <BarChart
+          width={500}
+          height={300}
+          data={data}
+          margin={{
+            top: 50, right: 30, left: 20, bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="Workouts" fill="#8884d8" />
+        </BarChart>
+      );
+    } else if (chartType === 'line') {
+      return (
+        <LineChart
+          width={500}
+          height={300}
+          data={data}
+          margin={{
+            top: 50, right: 30, left: 20, bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line type="monotone" dataKey="Workouts" stroke="#8884d8" activeDot={{ r: 8 }} />
+        </LineChart>
+      );
+    }
+  };
+
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', height: '100vh', alignItems: 'center'}}>
-  <BarChart
-    width={500}
-    height={300}
-    data={data}
-    margin={{
-      top: 50, right: 30, left: 20, bottom: 5,
-    }}
-  >
-    <CartesianGrid strokeDasharray="3 3" />
-    <XAxis dataKey="name" />
-    <YAxis />
-    <Tooltip />
-    <Legend />
-    <Bar dataKey="Workouts" fill="#8884d8" />
-  </BarChart>
-</div>
+    <div style={{ display: 'flex', justifyContent: 'center', height: '100vh', alignItems: 'center' }}>
+    <button onClick={() => setChartType('bar')}>Bar Chart</button> 
+    <button onClick={() => setChartType('line')}>Line Chart</button>
+    {renderChart()}
+  </div>
 
 );
   
