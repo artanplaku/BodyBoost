@@ -80,8 +80,8 @@ const History = () => {
     if (chartType === 'bar') {
       return (
         <BarChart
-          width={500}
-          height={300}
+          width={600}
+          height={400}
           data={data}
           margin={{
             top: 50, right: 30, left: 20, bottom: 5,
@@ -98,8 +98,8 @@ const History = () => {
     } else if (chartType === 'line') {
       return (
         <LineChart
-          width={500}
-          height={300}
+          width={600}
+          height={400}
           data={data}
           margin={{
             top: 50, right: 30, left: 20, bottom: 5,
@@ -118,9 +118,11 @@ const History = () => {
 
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', height: '100vh', alignItems: 'center' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100vh', alignItems: 'center' }}>
+      <div>
     <button onClick={() => setChartType('bar')}>Bar Chart</button> 
     <button onClick={() => setChartType('line')}>Line Chart</button>
+    </div>
     {renderChart()}
   </div>
 
