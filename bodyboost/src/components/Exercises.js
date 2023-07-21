@@ -8,7 +8,21 @@ const Exercises = () => {
     const [exercises, setExercises] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [selectedDay, setSelectedDay] = useState({});
+    
 
+
+    const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
+   
+    const handleDaySelect = (exerciseName, day) => {
+      setSelectedDay({
+          ...selectedDay,
+          [exerciseName]: day
+      });
+  };
+    
+    console.log(selectedDay)
     const difficulties = ["beginner", "intermediate", "expert"];
 
     const muscles = [
@@ -131,12 +145,41 @@ const Exercises = () => {
             </div>
 
             <ul>
-                {exercises.map(exercise => (
+                {exercises.map((exercise) => (
                     <div key={exercise.name} className="exercise-card">
-                    <div className="title-container">  {/* new div */}
+                    <div className="title-container">
                       <h2>{exercise.name}</h2>
-                      <div className="add-circle">+
-                      <span className="tooltip-text">Add to Workouts</span>
+                      <div
+                            className="add-circle"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedDay({ 
+                                ...selectedDay, 
+                                [exercise.name]: selectedDay && selectedDay[exercise.name] ? null : daysOfWeek[0] 
+                              });
+                            }}
+                          >
+                    +
+                    <span className="tooltip-text">Add to Workouts</span>
+                        {selectedDay && selectedDay[exercise.name] && (
+                          <div>
+                            <select
+                            value={selectedDay[exercise.name]}
+                            onChange={(e) => {
+                              e.stopPropagation(); 
+                              handleDaySelect(exercise.name, e.target.value);
+                            }}
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <option value="">Select a day</option>
+                            {daysOfWeek.map((day) => (
+                              <option key={day} value={day}>
+                                {day}
+                              </option>
+                            ))}
+                          </select>
+                      </div>
+                    )}
                       </div>
                     </div>
                     <p>Difficulty: {exercise.difficulty}</p>
