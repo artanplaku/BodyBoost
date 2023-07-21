@@ -27,6 +27,7 @@
 }
 
 .exercise-card {
+    position: relative;
     width: 900px;
     height: 500px;
     background-color: white;
@@ -42,4 +43,43 @@
 .muscles-container-divs{
     display: flex;
     flex-wrap: wrap;
+}
+
+.add-circle {
+  position: relative; /* add this line */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+  right: 10px;
+  top: 10px;
+}
+
+.tooltip-text {
+  display: none;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 30%;  /* change this */
+  left: 50%;
+  transform: translate(-50%, -100%);
+}
+
+.add-circle:hover .tooltip-text {
+  display: block;
+}
+.title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

@@ -133,11 +133,16 @@ const Exercises = () => {
             <ul>
                 {exercises.map(exercise => (
                     <div key={exercise.name} className="exercise-card">
-                    <h2>{exercise.name}</h2>
+                    <div className="title-container">  {/* new div */}
+                      <h2>{exercise.name}</h2>
+                      <div className="add-circle">+
+                      <span className="tooltip-text">Add to Workouts</span>
+                      </div>
+                    </div>
                     <p>Difficulty: {exercise.difficulty}</p>
                     <p>Muscle: {exercise.muscle}</p>
                     <p>Instructions: {exercise.instructions}</p>
-                </div>
+                  </div>
                 
                 )
                 )}
