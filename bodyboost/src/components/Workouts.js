@@ -12,6 +12,8 @@ const Workouts = () => {
     const [editingWorkoutData, setEditingWorkoutData] = useState({});
     const [editingWorkoutId, setEditingWorkoutId] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
+    const [selectedDay, setSelectedDay] = useState(null);
+    const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 
     useEffect(() => {
@@ -66,6 +68,7 @@ const handleEdit = (workout) => {
     setIsEditing(true);
     setTitle(workout.title);
     setExercises(workout.exercises);
+    setSelectedDay(workout.day);
   };
  //------------------------------------------------------------------------- 
 const handleSubmit = async (event) => {
@@ -74,7 +77,10 @@ const handleSubmit = async (event) => {
     const workoutData = {
       title,
       exercises,
+      day: selectedDay
     };
+
+    console.log('Submitting workout data:', workoutData);
   
     const token = localStorage.getItem('token');
     if (!token) {
@@ -123,6 +129,7 @@ const handleSubmit = async (event) => {
   
     setTitle('');
     setExercises([]);
+    setSelectedDay(null);
   };
   //---------------------------------DELETE---------------------------------
 
@@ -168,62 +175,76 @@ const handleSubmit = async (event) => {
 
   return (
     
-    <div>
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Muscle Target"
-        value={title}
-        onChange={(event) => setTitle(event.target.value)}
-      />
-      {exercises.map((exercise, index) => (
-        <div key={index}>
+    <div className='workout-container'>
+      {selectedDay && (
+        <form onSubmit={handleSubmit}>
+          <h2>Add a workout for {selectedDay}</h2>
           <input
             type="text"
-            placeholder="Exercise Name"
-            value={exercise.name}
-            onChange={(event) => handleExerciseChange(index, 'name', event.target.value)}
+            placeholder="Muscle Target"
+            value={title}
+            onChange={(event) => setTitle(event.target.value)}
           />
-          <input
-            type="number"
-            placeholder="Sets"
-            value={exercise.sets}
-            onChange={(event) => handleExerciseChange(index, 'sets', event.target.value)}
-          />
-          <input
-            type="number"
-            placeholder="Reps"
-            value={exercise.reps}
-            onChange={(event) => handleExerciseChange(index, 'reps', event.target.value)}
-          />
-          <input
-            type="number"
-            placeholder="Weight"
-            value={exercise.weight}
-            onChange={(event) => handleExerciseChange(index, 'weight', event.target.value)}
-          />
-        </div>
-      ))}
-      <button type="button" onClick={handleAddExercise}>Add Exercise</button>
-      <button type="submit">Create Workout</button>
-    </form>
-
-    {workouts.map((workout) => (
-  <div key={workout._id}>
-    <h2>{workout.title}</h2>
-    <ul>
-      {workout.exercises.map((exercise, index) => (
-        <li key={index}>
-        {exercise.name} - {exercise.sets} sets x {exercise.reps} reps x {exercise.weight} lbs
-        </li>
-      ))}
-    </ul>
-    <button onClick={() => handleEdit(workout)}>Edit</button>
-    <button onClick={() => handleDelete(workout._id)}>Delete</button>
-  </div>
-))}
-  </div>
-);
+          {exercises.map((exercise, index) => (
+            <div key={index}>
+              <input
+                type="text"
+                placeholder="Exercise Name"
+                value={exercise.name}
+                onChange={(event) => handleExerciseChange(index, 'name', event.target.value)}
+              />
+              <input
+                type="number"
+                placeholder="Sets"
+                value={exercise.sets}
+                onChange={(event) => handleExerciseChange(index, 'sets', event.target.value)}
+              />
+              <input
+                type="number"
+                placeholder="Reps"
+                value={exercise.reps}
+                onChange={(event) => handleExerciseChange(index, 'reps', event.target.value)}
+              />
+              <input
+                type="number"
+                placeholder="Weight"
+                value={exercise.weight}
+                onChange={(event) => handleExerciseChange(index, 'weight', event.target.value)}
+              />
+            </div>
+          ))}
+          <button type="button" onClick={handleAddExercise}>Add Exercise</button>
+          <button type="submit">{isEditing ? 'Update Workout' : 'Create Workout'}</button>
+        </form>
+      )}
+      <div className="workouts-grid">
+        {daysOfWeek.map(day => (
+          <div className="day-row" key={day}>
+            <div className="day-row-header">
+              <h2>{day}</h2>
+              <div className="add-exercise-button" onClick={() => setSelectedDay(day)}>
+                <span>+</span>
+              </div>
+            </div>
+            {workouts.filter(workout => workout.day === day).map((workout) => (
+              <div key={workout._id}>
+                <h3>{workout.title}</h3>
+                <ul>
+                  {workout.exercises.map((exercise, index) => (
+                    <li key={index}>
+                      {exercise.name} - {exercise.sets} sets x {exercise.reps} reps x {exercise.weight} lbs
+                    </li>
+                  ))}
+                </ul>
+                <button onClick={() => handleEdit(workout)}>Edit</button>
+                <button onClick={() => handleDelete(workout._id)}>Delete</button>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default Workouts;

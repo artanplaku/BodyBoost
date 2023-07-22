@@ -2,11 +2,17 @@
 .container {
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
 .content {
   flex: 1;
   margin-left: 280px;
+  padding-left: 20px;
   display: flex;
-  justify-content: center;
-  align-items: center ;
+  justify-content: flex-start;
+  align-items: flex-start;
+  /* border: 1px solid blue; */
+  width: calc(98% - 300px);
+  height: 100%;
 }
+  
