@@ -5,7 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom'
 import { AuthContextProvider } from './contexts/AuthContext';
-import { ThemeProvider } from './contexts/ThemeContext'; 
+import { ThemeProvider } from './contexts/ThemeContext';
+import { WorkoutProvider } from './contexts/WorkoutContext'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -14,7 +15,9 @@ root.render(
     <BrowserRouter>
     <AuthContextProvider>
     <ThemeProvider>
+    <WorkoutProvider>
     <App />
+    </WorkoutProvider>
     </ThemeProvider>
     </AuthContextProvider>
     </BrowserRouter>

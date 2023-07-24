@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { WorkoutContext } from '../contexts/WorkoutContext';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import '../styles/Workouts.css'
@@ -8,7 +9,8 @@ const Workouts = () => {
     const [title, setTitle] = useState('');
     const [exercises, setExercises] = useState([]);
     const [userId, setUserId] = useState('')
-    const [workouts, setWorkouts] = useState([]);
+    const { workouts, setWorkouts, addWorkouts } = useContext(WorkoutContext);
+    console.log(workouts)
     const [editingWorkoutData, setEditingWorkoutData] = useState({});
     const [editingWorkoutId, setEditingWorkoutId] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
