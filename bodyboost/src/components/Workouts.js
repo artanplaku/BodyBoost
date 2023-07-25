@@ -133,7 +133,7 @@ const handleSubmit = async (event) => {
     setExercises([]);
     setSelectedDay(null);
   };
-  //---------------------------------DELETE---------------------------------
+  //---------------------------------DELETE WORKOUT-----------------------------------------
 
   const handleDelete = async (id) => {
     const token = localStorage.getItem('token');
@@ -153,6 +153,14 @@ const handleSubmit = async (event) => {
       console.error(error);
     }
   };
+
+  //---------------------------DELETE EXERCISE-----------------------------
+  const handleDeleteExercise = (index) => {
+    const updatedExercises = [...exercises];
+    updatedExercises.splice(index, 1);
+    setExercises(updatedExercises);
+}
+
   //----------------------------------UPDATE-------------------------------
 
   const handleUpdate = async (id, editedData) => {
@@ -168,7 +176,8 @@ const handleSubmit = async (event) => {
           'Authorization': `Bearer ${token}`,
         },
       });
-      setWorkouts(workouts.map(workout => workout._id === id ? response.data : workout));
+      const updatedWorkouts = workouts.map(workout => workout._id === id ? response.data : workout);
+        setWorkouts(updatedWorkouts);
     } catch (error) {
       console.error(error);
     }
@@ -221,26 +230,28 @@ return (
                                       value={exercise.weight}
                                       onChange={(event) => handleExerciseChange(index, 'weight', event.target.value)}
                                   />
+                                   {isEditing && <button type="button" onClick={() => handleDeleteExercise(index)}>Delete Exercise</button>}
                               </div>
                           ))}
                           <button type="button" onClick={handleAddExercise}>Add Exercise</button>
                           <button type="submit">{isEditing ? "Update Workout" : "Create Workout"}</button>
                       </form>
                   )}
-                  {workouts.filter(workout => workout.day === day).map((workout) => (
+                 {workouts.filter(workout => workout.day === day).map((workout) => (
                       <div key={workout._id}>
-                          <h3>{workout.title}</h3>
-                          <ul>
-                              {workout.exercises.map((exercise, index) => (
-                                  <li key={index}>
-                                      {exercise.name} - {exercise.sets} sets x {exercise.reps} reps x {exercise.weight} lbs
-                                  </li>
-                              ))}
-                          </ul>
+                        <h3>{workout.title}</h3>
+                        {workout.exercises.map((exercise, index) => (
+                          <div className="exercise-container" key={index}>
+                            <span>{exercise.name} - {exercise.sets} sets x {exercise.reps} reps x {exercise.weight} lbs</span>
+                            
+                          </div>
+                        ))}
+                        <div className="button-container">
                           <button onClick={() => handleEdit(workout)}>Edit</button>
                           <button onClick={() => handleDelete(workout._id)}>Delete</button>
+                        </div>
                       </div>
-                  ))}
+                    ))}
               </div>
           ))}
       </div>
