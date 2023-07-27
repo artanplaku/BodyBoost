@@ -63,15 +63,14 @@ function Progress() {
   };
 
   return (
-    <div>
-      <input type="file" onChange={handleFileChange} />
-      <button onClick={uploadFile}>Upload</button>
-      {images.map((image) => (
-        <img src={`https://bodyboostbackend.onrender.com${image.imageUrl}`} alt="" key={image._id} />
-
-      ))}
-    </div>
-  );
+    <div className="container">
+    <input type="file" onChange={handleFileChange} />
+    <button onClick={uploadFile}>Upload</button>
+    {images.map((image) => (
+      <img src={`https://bodyboostbackend.onrender.com${image.imageUrl}`} alt="img" key={image._id} className="image" />
+    ))}
+  </div>
+);
 }
 
 export default Progress;
