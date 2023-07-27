@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
+import "../styles/Progress.css"
 
 function Progress() {
   const [selectedFile, setSelectedFile] = useState(null);
