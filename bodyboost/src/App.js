@@ -12,6 +12,7 @@ import Progress from './components/Progress';
 import Settings from './components/Settings';
 import Challenges from './components/Challenges';
 import Achievements from './components/Achievements';
+import Contract from './components/Contract';
 import { Routes, Route,  } from 'react-router-dom'
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
       <Route path="/settings" element={<Settings />} />
       <Route path="/challenges" element={<Challenges />} />
       <Route path="/achievements" element={<Achievements />} />
+      <Route path="/contract" element={<Contract />}/>
     </Routes>
       </div>
   </div>
