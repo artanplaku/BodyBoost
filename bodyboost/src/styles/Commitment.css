@@ -30,3 +30,15 @@
 .sigCanvas {
     margin-left: 55px; /* Adjust this value to suit your needs */
 }
+.signature-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signature-display {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 500px;
+}
