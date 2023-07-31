@@ -1,0 +1,32 @@
+.contract-container{
+    width: 100%;
+}
+
+.editor {
+    margin-top: 50px;
+}
+
+.save-button {
+    margin-top: 20px;
+}
+
+.ql-container.ql-snow {
+    height: 400px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.quill-wrapper, .content-wrapper {
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.contract-content{
+    max-width: 90%;
+    margin: 0 auto;
+    width: 100%;
+    overflow: auto;
+}
+.sigCanvas {
+    margin-left: 55px; /* Adjust this value to suit your needs */
+}

@@ -25,7 +25,7 @@ const Navbar = () => {
       <li><Link to="/history">History</Link></li>
       <li><Link to="/progress">Progress</Link></li>
       <li><Link to="/settings">Settings</Link></li>
-      <li><Link to="/commitment">Commitment Lvl</Link></li>
+      <li><Link to="/commitment">Commitment </Link></li>
       <li><Link to="/challenges">Challenges</Link></li>
       <li><Link to="/achievements">Achievements</Link></li>
       {isLoggedIn && <li><button onClick={handleLogout}>Logout</button></li>}
