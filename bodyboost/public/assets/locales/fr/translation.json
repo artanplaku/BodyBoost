@@ -1,0 +1,123 @@
+{
+    
+  "welcome_message": "Bienvenue sur le Fitness Tracker",
+    "description_message": "Ici, vous pouvez suivre vos entraînements et vos progrès",
+    
+    "navbar": {
+      "home": "Accueil",
+      "workouts": "Entraînements",
+      "exercises": "Exercices",
+      "history": "Historique",
+      "progress": "Progrès",
+      "settings": "Paramètres",
+      "commitment": "Engagement",
+      "challenges": "Défis",
+      "achievements": "Réalisations",
+      "logout": "Déconnexion",
+      "login": "Connexion"
+    },
+
+    "workouts": {
+      "add_workout": "Ajouter un entraînement pour",
+      "muscle_target": "Muscle ciblé",
+      "exercise_name": "Nom de l'exercice",
+      "sets": "Séries",
+      "reps": "Répétitions",
+      "weight": "Poids",
+      "add_exercise": "Ajouter un exercice",
+      "create_workout": "Créer un entraînement",
+      "update_workout": "Mettre à jour l'entraînement",
+      "delete_exercise": "Supprimer l'exercice",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "days": {
+        "monday": "Lundi",
+        "tuesday": "Mardi",
+        "wednesday": "Mercredi",
+        "thursday": "Jeudi",
+        "friday": "Vendredi",
+        "saturday": "Samedi",
+        "sunday": "Dimanche"
+      }
+    },
+    "exercises": {
+      "muscles": "Muscles",
+      "difficulty": "Difficulté",
+      "beginner": "Débutant",
+      "intermediate": "Intermédiaire",
+      "expert": "Expert",
+      "muscle_abdominals": "Abdominaux",
+      "muscle_abductors": "Abducteurs",
+      "muscle_biceps": "Biceps",
+      "muscle_calves": "Mollets",
+      "muscle_chest": "Poitrine",
+      "muscle_forearms": "Avant-bras",
+      "muscle_glutes": "Fessiers",
+      "muscle_hamstrings": "Ischio-jambiers",
+      "muscle_lats": "Dorsaux",
+      "muscle_lower_back": "Bas du dos",
+      "muscle_middle_back": "Milieu du dos",
+      "muscle_neck": "Cou",
+      "muscle_quadriceps": "Quadriceps",
+      "muscle_traps": "Trapèzes",
+      "muscle_triceps": "Triceps",
+      "add_to_workouts": "Ajouter aux entraînements",
+      "select_a_day": "Sélectionnez un jour",
+      "day_monday": "Lundi",
+      "day_tuesday": "Mardi",
+      "day_wednesday": "Mercredi",
+      "day_thursday": "Jeudi",
+      "day_friday": "Vendredi",
+      "day_saturday": "Samedi",
+      "day_sunday": "Dimanche",
+      "muscle": "Muscle",
+      "instructions": "Instructions"
+    },
+    "history": {
+      "barChart": "Diagramme en barres",
+      "lineChart": "Graphique en ligne",
+      "workouts": "Entraînements",
+      "weight": "Poids"
+    },
+    "progress": {
+      "upload": "Télécharger"
+    },
+    "Settings": {
+      "title": "Réglages",
+      "mode": "Mode",
+      "dark": "Sombre",
+      "light": "Lumière"
+    },
+    "Commitment":{
+      "background_message": "Moi, [Votre Nom], je m'engage à atteindre mes objectifs personnels...",
+      "commitment_contract": "Contrat d'engagement",
+      "commitment_message": "Rédigez ici votre contrat d'engagement personnel. Il s'agit d'un contrat que vous passez avec vous-même pour atteindre vos objectifs personnels",
+      "create_contract": "Créer un contrat",
+      "signature": "Signature",
+      "save_contract": "Sauvegarder le contrat",
+      "delete": "Supprimer"
+    },
+    "Challenges":{
+      "challenge_text": "100 POMPES/JOUR PENDANT 30 JOURS",
+      "begin": "Commencer"
+    },
+    "Achievements": {
+      "achievements": "Les réalisations"
+    },
+    "Login": {
+      "username": "Nom d'utilisateur",
+      "password": "Mot de passe",
+      "submit": "Soumettre",
+      "account_question": "Vous n'avez pas de compte?",
+      "register": "Inscrivez-vous ici"
+    },
+    "Register":{
+      "username": "Nom de l'utilisateur",
+      "email": "Email",
+      "password": "Mot de passe",
+      "submit": "Soumettre",
+      "account_question": "Vous avez déjà un compte?",
+      "login": "S'identifier"
+    }
+  }
+  

@@ -6,17 +6,26 @@ import jwtDecode from 'jwt-decode';
 import '../styles/Commitment.css'
 import SignatureCanvas from 'react-signature-canvas';
 import { Collapse } from 'antd';
+import { useTranslation } from 'react-i18next';
 
 
 const { Panel } = Collapse;
 
 const Commitment = () => {
-    const [content, setContent] = useState('I, [Your Name], commit to achieving my personal goals...');
+  const { t, i18n } = useTranslation();
+    const [content, setContent] = useState(t('Commitment.background_message'));
     const [submittedContent, setSubmittedContent] = useState("");
     const [signatureImage, setSignatureImage] = useState("");
     const [contracts, setContracts] = useState([]);
-    const [confirmationMessage, setConfirmationMessage] = useState('');
+    // const [confirmationMessage, setConfirmationMessage] = useState('');
     const sigCanvas = useRef({});
+
+
+    
+//use effect so that useState updates whenever the language updates
+    useEffect(() => {
+      setContent(t('Commitment.background_message'));
+    }, [t, i18n.language]);
 
 //---------------------------------------------------------------------------------------
 const handleContentChange = (value) => {
@@ -133,36 +142,36 @@ const handleContentChange = (value) => {
 
       return (
         <div className='contract-container'>
-          <h2>Commitment Contract</h2>
-           <p>Write your personal commitment contract here. This is a contract with yourself to achieve your personal goals.</p>
-            <Collapse accordion>
-                <Panel header="Create Contract" key="1">
-                    <div className="quill-wrapper">
-                        <ReactQuill value={content} onChange={handleContentChange} modules={modules} className="editor"/>
-                    </div>
-                    <div className="signature-section">
-                      <h2>Signature</h2>
-                      <SignatureCanvas ref={sigCanvas} canvasProps={{width: 400, height: 100, className: 'sigCanvas', style: {backgroundColor: 'rgba(0,0,0,0.1)'}}} />
-                    </div>
-                    <button onClick={saveContract} className="save-button">Save Contract</button>
-                </Panel>
-            </Collapse>
-            <div className="content-wrapper">
-                <div className="contract-content" dangerouslySetInnerHTML={{ __html: submittedContent }} />
-            </div>
-            {signatureImage && <img src={signatureImage} alt="Signature" />}
-            {contracts.map(contract => (
+          <h2>{t('Commitment.commitment_contract')}</h2>
+          <p>{t('Commitment.commitment_message')}</p>
+          <Collapse accordion>
+            <Panel header={t('Commitment.create_contract')} key="1">
+              <div className="quill-wrapper">
+                <ReactQuill value={content} onChange={handleContentChange} modules={modules} className="editor"/>
+              </div>
+              <div className="signature-section">
+                <h2>{t('Commitment.signature')}</h2>
+                <SignatureCanvas ref={sigCanvas} canvasProps={{width: 400, height: 100, className: 'sigCanvas', style: {backgroundColor: 'rgba(0,0,0,0.1)'}}} />
+              </div>
+              <button onClick={saveContract} className="save-button">{t('Commitment.save_contract')}</button>
+            </Panel>
+          </Collapse>
+          <div className="content-wrapper">
+            <div className="contract-content" dangerouslySetInnerHTML={{ __html: submittedContent }} />
+          </div>
+          {signatureImage && <img src={signatureImage} alt={t('Commitment.signature')} />}
+          {contracts.map(contract => (
             <div key={contract._id} className="content-wrapper">
-                <div className="contract-content" dangerouslySetInnerHTML={{ __html: contract.content }} />
-                <div className="signature-display">
-                  <h2>Signature:</h2>
-                  <img src={contract.signature} alt="Signature" />
-                </div>
-                <button onClick={() => deleteContract(contract._id)}>Delete</button>
+              <div className="contract-content" dangerouslySetInnerHTML={{ __html: contract.content }} />
+              <div className="signature-display">
+                <h2>{t('Commitment.signature')}:</h2>
+                <img src={contract.signature} alt={t('Commitment.signature')} />
+              </div>
+              <button onClick={() => deleteContract(contract._id)}>{t('Commitment.delete')}</button>
             </div>
-            ))}
+          ))}
         </div>
-    )
+      );
     
 }
 

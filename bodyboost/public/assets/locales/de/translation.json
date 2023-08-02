@@ -1,0 +1,122 @@
+{
+  "welcome_message": "Willkommen beim Fitness Tracker",
+  "description_message": "Hier können Sie Ihre Workouts und Ihren Fortschritt verfolgen",
+
+  "navbar": {
+    "home": "Startseite",
+    "workouts": "Workouts",
+    "exercises": "Übungen",
+    "history": "Verlauf",
+    "progress": "Fortschritt",
+    "settings": "Einstellungen",
+    "commitment": "Verpflichtung",
+    "challenges": "Herausforderungen",
+    "achievements": "Erfolge",
+    "logout": "Abmelden",
+    "login": "Anmelden"
+  },
+  "workouts": {
+    "add_workout": "Fügen Sie ein Training hinzu für",
+    "muscle_target": "Muskelziel",
+    "exercise_name": "Übungsname",
+    "sets": "Sätze",
+    "reps": "Wiederholungen",
+    "weight": "Gewicht",
+    "add_exercise": "Übung hinzufügen",
+    "create_workout": "Training erstellen",
+    "update_workout": "Training aktualisieren",
+    "delete_exercise": "Übung löschen",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "days": {
+      "monday": "Montag",
+      "tuesday": "Dienstag",
+      "wednesday": "Mittwoch",
+      "thursday": "Donnerstag",
+      "friday": "Freitag",
+      "saturday": "Samstag",
+      "sunday": "Sonntag"
+    }
+  },
+  "exercises": {
+    "muscles": "Muskeln",
+    "difficulty": "Schwierigkeit",
+    "beginner": "Anfänger",
+    "intermediate": "Mittelstufe",
+    "expert": "Experte",
+    "muscle_abdominals": "Bauchmuskeln",
+    "muscle_abductors": "Abduktoren",
+    "muscle_biceps": "Bizeps",
+    "muscle_calves": "Waden",
+    "muscle_chest": "Brust",
+    "muscle_forearms": "Unterarme",
+    "muscle_glutes": "Gesäßmuskeln",
+    "muscle_hamstrings": "Oberschenkel",
+    "muscle_lats": "Latissimus",
+    "muscle_lower_back": "Unterer Rücken",
+    "muscle_middle_back": "Mittlerer Rücken",
+    "muscle_neck": "Hals",
+    "muscle_quadriceps": "Quadrizeps",
+    "muscle_traps": "Trapezmuskel",
+    "muscle_triceps": "Trizeps",
+    "add_to_workouts": "Zum Training hinzufügen",
+    "select_a_day": "Wählen Sie einen Tag",
+    "day_monday": "Montag",
+    "day_tuesday": "Dienstag",
+    "day_wednesday": "Mittwoch",
+    "day_thursday": "Donnerstag",
+    "day_friday": "Freitag",
+    "day_saturday": "Samstag",
+    "day_sunday": "Sonntag",
+    "muscle": "Muskel",
+    "instructions": "Anweisungen"
+  },
+  "history": {
+    "barChart": "Säulendiagramm",
+    "lineChart": "Liniendiagramm",
+    "workouts": "Workouts",
+    "weight": "Gewicht"
+  },
+  "progress": {
+    "upload": "Hochladen"
+  },
+  "Settings": {
+    "title": "Einstellungen",
+    "mode": "Modus",
+    "dark": "Dunkel",
+    "light": "Licht"
+  },
+  "Commitment":{
+    "background_message": "Ich, [Ihr Name], verpflichte mich, meine persönlichen Ziele zu erreichen...",
+    "commitment_contract": "Verpflichtungsvertrag",
+    "commitment_message": "Schreiben Sie hier Ihren persönlichen Verpflichtungsvertrag. Dies ist ein Vertrag mit sich selbst, um Ihre persönlichen Ziele zu erreichen",
+    "create_contract": "Vertrag erstellen",
+    "signature": "Unterschrift",
+    "save_contract": "Vertrag speichern",
+    "delete": "Löschen"
+  },
+  "Challenges":{
+    "challenge_text": "100 LIEGESTÜTZE/TAG FÜR 30 TAGE",
+    "begin": "Anfangen"
+  },
+  "Achievements": {
+    "achievements": "Errungenschaften"
+  },
+  "Login": {
+    "username": "Benutzername",
+    "password": "Passwort",
+    "submit": "Einreichen",
+    "account_question": "Haben Sie kein Konto?",
+    "register": "Hier registrieren"
+  },
+  "Register":{
+    "username": "Benutzername",
+    "email": "Email",
+    "password": "Passwort",
+    "submit": "Einreichen",
+    "account_question": "Haben Sie bereits ein Konto?",
+    "login": "Anmeldung"
+  }
+}
+
+  

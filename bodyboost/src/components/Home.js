@@ -1,10 +1,15 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next';
 
 const Home = () => {
+  const { t } = useTranslation();
   return (
     <div>
-      <h1>Welcome to the Fitness Tracker</h1>
-      <p>Here you can track your workouts and progress</p>
+      <div>
+      <h1>{t('welcome_message')}</h1>
+      <p>{t('description_message')}</p>
+    </div>
+
     </div>
   )
 }

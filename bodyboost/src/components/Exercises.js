@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import '../styles/Exercises.css'
+import { useTranslation } from 'react-i18next';
 const Exercises = () => {
   
     // const [selectedDiv, setSelectedDiv] = useState(null);
@@ -9,6 +10,7 @@ const Exercises = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [selectedDay, setSelectedDay] = useState({});
+    const { t } = useTranslation();
     
 
 
@@ -99,100 +101,100 @@ const Exercises = () => {
     }
   
     return (
-        <div>
-            <div>
-                <div className="container">
-                        <h1>Difficulty</h1>
-                    <div className="difficulty-container">
-                        <div 
-                        className="difficulty-div" 
-                        onClick={() => handleDifficultyClick(0)} 
-                        style={getDifficultyStyle(0)}
-                        >
-                        Beginner
-                        </div>
-                        <div 
-                        className="difficulty-div"
-                        onClick={() => handleDifficultyClick(1)} 
-                        style={getDifficultyStyle(1)}
-                        >
-                        Intermediate
-                        </div>
-                        <div 
-                        className="difficulty-div"
-                        onClick={() => handleDifficultyClick(2)} 
-                        style={getDifficultyStyle(2)}
-                        >
-                        Expert
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <div className="muscles-container">
-                <h1>Muscles</h1>
-                <div className="muscles-container-divs">
-                {muscles.map((muscle, index) => (
-                    <div
-                    key={muscle}
-                    className="muscle-div"
-                    onClick={() => handleMuscleClick(index)}
-                    style={getMuscleStyle(index)}
-                    >
-                    {muscle}
-                    </div>
-                ))}
-                </div>
-            </div>
-
-            <ul>
-                {exercises.map((exercise) => (
-                    <div key={exercise.name} className="exercise-card">
-                    <div className="title-container">
-                      <h2>{exercise.name}</h2>
-                      <div
-                            className="add-circle"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setSelectedDay({ 
-                                ...selectedDay, 
-                                [exercise.name]: selectedDay && selectedDay[exercise.name] ? null : daysOfWeek[0] 
-                              });
-                            }}
-                          >
-                    +
-                    <span className="tooltip-text">Add to Workouts</span>
-                        {selectedDay && selectedDay[exercise.name] && (
-                          <div>
-                            <select
-                            value={selectedDay[exercise.name]}
-                            onChange={(e) => {
-                              e.stopPropagation(); 
-                              handleDaySelect(exercise.name, e.target.value);
-                            }}
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            <option value="">Select a day</option>
-                            {daysOfWeek.map((day) => (
-                              <option key={day} value={day}>
-                                {day}
-                              </option>
-                            ))}
-                          </select>
+      <div>
+          <div>
+              <div className="container">
+                      <h1>{t('exercises.difficulty')}</h1>
+                  <div className="difficulty-container">
+                      <div 
+                      className="difficulty-div" 
+                      onClick={() => handleDifficultyClick(0)} 
+                      style={getDifficultyStyle(0)}
+                      >
+                      {t('exercises.beginner')}
                       </div>
-                    )}
+                      <div 
+                      className="difficulty-div"
+                      onClick={() => handleDifficultyClick(1)} 
+                      style={getDifficultyStyle(1)}
+                      >
+                      {t('exercises.intermediate')}
                       </div>
-                    </div>
-                    <p>Difficulty: {exercise.difficulty}</p>
-                    <p>Muscle: {exercise.muscle}</p>
-                    <p>Instructions: {exercise.instructions}</p>
+                      <div 
+                      className="difficulty-div"
+                      onClick={() => handleDifficultyClick(2)} 
+                      style={getDifficultyStyle(2)}
+                      >
+                      {t('exercises.expert')}
+                      </div>
                   </div>
-                
-                )
-                )}
-            </ul>
+              </div>
+          </div>
+      <div className="muscles-container">
+              <h1>{t('exercises.muscles')}</h1>
+              <div className="muscles-container-divs">
+              {muscles.map((muscle, index) => (
+                  <div
+                  key={muscle}
+                  className="muscle-div"
+                  onClick={() => handleMuscleClick(index)}
+                  style={getMuscleStyle(index)}
+                  >
+                  {t(`exercises.muscle_${muscle}`)}
+                  </div>
+              ))}
+              </div>
+          </div>
 
+          <ul>
+              {exercises.map((exercise) => (
+                  <div key={exercise.name} className="exercise-card">
+                  <div className="title-container">
+                    <h2>{exercise.name}</h2>
+                    <div
+                          className="add-circle"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedDay({ 
+                              ...selectedDay, 
+                              [exercise.name]: selectedDay && selectedDay[exercise.name] ? null : daysOfWeek[0] 
+                            });
+                          }}
+                        >
+                  +
+                  <span className="tooltip-text">{t('exercises.add_to_workouts')}</span>
+                      {selectedDay && selectedDay[exercise.name] && (
+                        <div>
+                          <select
+                          value={selectedDay[exercise.name]}
+                          onChange={(e) => {
+                            e.stopPropagation(); 
+                            handleDaySelect(exercise.name, e.target.value);
+                          }}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <option value="">{t('exercises.select_a_day')}</option>
+                          {daysOfWeek.map((day) => (
+                            <option key={day} value={day}>
+                              {t(`exercises.day_${day.toLowerCase()}`)}
+                            </option>
+                          ))}
+                        </select>
+                    </div>
+                  )}
+                    </div>
+                  </div>
+                  <p>{t('exercises.difficulty')}: {exercise.difficulty}</p>
+                  <p>{t('exercises.muscle')}: {exercise.muscle}</p>
+                  <p>{t('exercises.instructions')}: {exercise.instructions}</p>
                 </div>
-    );
+              
+              )
+              )}
+          </ul>
+
+              </div>
+  );
   };
 
 export default Exercises;

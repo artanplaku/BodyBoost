@@ -3,8 +3,10 @@ import '../styles/Challenges.css';
 import { WorkoutContext } from '../contexts/WorkoutContext';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
+import { useTranslation } from 'react-i18next';
 
 const Challenges = () => {
+  const { t } = useTranslation();
   // Use the setWorkouts function from the WorkoutContext to update the state
   const { workouts, setWorkouts, addWorkouts } = useContext(WorkoutContext);
 
@@ -92,9 +94,9 @@ const Challenges = () => {
     <div>
       <div className="challenge-container">
         <div className="challenge-card">
-          <p className="challenge-text">100 PUSHUPS/DAY FOR 30 DAYS</p>
+          <p className="challenge-text">{t('Challenges.challenge_text')}</p>
         </div>
-        <button className="challenge-button" onClick={handleClick}>Begin</button>
+        <button className="challenge-button" onClick={handleClick}>{t('Challenges.begin')}</button>
       </div>
     </div>
   );

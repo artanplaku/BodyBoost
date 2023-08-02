@@ -2,10 +2,11 @@ import React, { useState, useContext } from 'react'
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
-import '../styles/Login.css'
+import '../styles/Login.css';
+import { useTranslation } from 'react-i18next';
 
 const Login = () => {
-
+  const { t } = useTranslation();
 const { setLoggedIn } = useContext(AuthContext);
 const [username, setUserName] = useState('');
 const [password, setPassword] = useState('');
@@ -36,23 +37,23 @@ const handleSubmit = (event) => {
       <form className='login-form' onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Username"
+          placeholder={t('Login.username')}
           value={username}
           onChange={(event) => setUserName(event.target.value)}
-          />
+        />
         <input
           type="password"
-          placeholder="Password"
+          placeholder={t('Login.password')}
           value={password}
           onChange={(event) => setPassword(event.target.value)}
-          />
-        <button type="submit">Submit</button>
-      <div className='register-link'>
-        Dont have an account? 
-        <Link to='/register'>Register here</Link>
+        />
+        <button type="submit">{t('Login.submit')}</button>
+        <div className='register-link'>
+          {t('Login.account_question')} 
+          <Link to='/register'>{t('Login.register')}</Link>
         </div>
       </form>
-   </div>
+    </div>
   )
 }
 

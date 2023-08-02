@@ -1,0 +1,122 @@
+
+{
+    "welcome_message": "Welcome to the Fitness Tracker",
+    "description_message": "Here you can track your workouts and progress",
+    
+    "navbar": {
+        "home": "Home",
+        "workouts": "Workouts",
+        "exercises": "Exercises",
+        "history": "History",
+        "progress": "Progress",
+        "settings": "Settings",
+        "commitment": "Commitment",
+        "challenges": "Challenges",
+        "achievements": "Achievements",
+        "logout": "Logout",
+        "login": "Login"
+      },
+
+      "workouts": {
+        "add_workout": "Add a workout for",
+        "muscle_target": "Muscle Target",
+        "exercise_name": "Exercise Name",
+        "sets": "Sets",
+        "reps": "Reps",
+        "weight": "Weight",
+        "add_exercise": "Add Exercise",
+        "create_workout": "Create Workout",
+        "update_workout": "Update Workout",
+        "delete_exercise": "Delete Exercise",
+        "edit": "Edit",
+        "delete": "Delete",
+        "days": {
+          "monday": "Monday",
+          "tuesday": "Tuesday",
+          "wednesday": "Wednesday",
+          "thursday": "Thursday",
+          "friday": "Friday",
+          "saturday": "Saturday",
+          "sunday": "Sunday"
+        }
+      }, 
+      "exercises": {
+        "difficulty": "Difficulty",
+        "beginner": "Beginner",
+        "intermediate": "Intermediate",
+        "expert": "Expert",
+        "muscles": "Muscles",
+        "muscle_abdominals": "Abdominals",
+        "muscle_abductors": "Abductors",
+        "muscle_biceps": "Biceps",
+        "muscle_calves": "Calves",
+        "muscle_chest": "Chest",
+        "muscle_forearms": "Forearms",
+        "muscle_glutes": "Glutes",
+        "muscle_hamstrings": "Hamstrings",
+        "muscle_lats": "Lats",
+        "muscle_lower_back": "Lower Back",
+        "muscle_middle_back": "Middle Back",
+        "muscle_neck": "Neck",
+        "muscle_quadriceps": "Quadriceps",
+        "muscle_traps": "Traps",
+        "muscle_triceps": "Triceps",
+        "add_to_workouts": "Add to Workouts",
+        "select_a_day": "Select a day",
+        "day_monday": "Monday",
+        "day_tuesday": "Tuesday",
+        "day_wednesday": "Wednesday",
+        "day_thursday": "Thursday",
+        "day_friday": "Friday",
+        "day_saturday": "Saturday",
+        "day_sunday": "Sunday",
+        "muscle": "Muscle",
+        "instructions": "Instructions"
+      },
+      "history": {
+        "barChart": "Bar Chart",
+        "lineChart": "Line Chart",
+        "workouts": "Workouts",
+        "weight": "Weight"
+      }, 
+      "progress": {
+        "upload": "Upload"
+      },
+      "Settings": {
+        "title": "Settings",
+        "mode": "Mode",
+        "dark": "Dark",
+        "light": "Light"
+      }, 
+      "Commitment":{
+        "background_message": "I, [Your Name], commit to achieving my personal goals...",
+        "commitment_contract": "Commitment Contract",
+        "commitment_message": "Write your personal commitment contract here. This is a contract with yourself to achieve your personal goals",
+        "create_contract": "Create Contract",
+        "signature": "Signature",
+        "save_contract": "Save Contract",
+        "delete": "Delete"
+      },
+      "Challenges":{
+        "challenge_text": "100 PUSHUPS/DAY FOR 30 DAYS",
+        "begin": "Begin"
+      },
+      "Achievements": {
+        "achievements": "Achievements"
+      },
+      "Login": {
+        "username": "Username",
+        "password": "Password",
+        "submit": "Submit",
+        "account_question": "Don't have an account?",
+        "register": "Register here"
+      },
+      "Register":{
+        "username": "Username",
+        "email": "Email",
+        "password": "Password",
+        "submit": "Submit",
+        "account_exist": "Already have an account?",
+        "login": "Login"
+      }
+}

@@ -3,7 +3,7 @@ import { WorkoutContext } from '../contexts/WorkoutContext';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import '../styles/Workouts.css'
-
+import { useTranslation } from 'react-i18next';
 
 const Workouts = () => {
     const [title, setTitle] = useState('');
@@ -16,6 +16,7 @@ const Workouts = () => {
     const [isEditing, setIsEditing] = useState(false);
     const [selectedDay, setSelectedDay] = useState(null);
     const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    const { t } = useTranslation();
 
 
     useEffect(() => {
@@ -190,17 +191,17 @@ return (
           {daysOfWeek.map(day => (
               <div className="day-row" key={day}>
                   <div className="day-row-header">
-                      <h2>{day}</h2>
+                      <h2>{t(`workouts.days.${day.toLowerCase()}`)}</h2>
                       <div className="add-exercise-button" onClick={() => setSelectedDay(day)}>
                           <span>+</span>
                       </div>
                   </div>
                   {selectedDay === day && (
                       <form onSubmit={handleSubmit}>
-                          <h2>Add a workout for {selectedDay}</h2>
+                          <h2>{t('workouts.add_workout')} {selectedDay}</h2>
                           <input
                               type="text"
-                              placeholder="Muscle Target"
+                              placeholder={t('workouts.muscle_target')}
                               value={title}
                               onChange={(event) => setTitle(event.target.value)}
                           />
@@ -208,50 +209,49 @@ return (
                               <div key={index}>
                                   <input
                                       type="text"
-                                      placeholder="Exercise Name"
+                                      placeholder={t('workouts.exercise_name')}
                                       value={exercise.name}
                                       onChange={(event) => handleExerciseChange(index, 'name', event.target.value)}
                                   />
                                   <input
                                       type="number"
-                                      placeholder="Sets"
+                                      placeholder={t('workouts.sets')}
                                       value={exercise.sets}
                                       onChange={(event) => handleExerciseChange(index, 'sets', event.target.value)}
                                   />
                                   <input
                                       type="number"
-                                      placeholder="Reps"
+                                      placeholder={t('workouts.reps')}
                                       value={exercise.reps}
                                       onChange={(event) => handleExerciseChange(index, 'reps', event.target.value)}
                                   />
                                   <input
                                       type="number"
-                                      placeholder="Weight"
+                                      placeholder={t('workouts.weight')}
                                       value={exercise.weight}
                                       onChange={(event) => handleExerciseChange(index, 'weight', event.target.value)}
                                   />
-                                   {isEditing && <button type="button" onClick={() => handleDeleteExercise(index)}>Delete Exercise</button>}
+                                  {isEditing && <button type="button" onClick={() => handleDeleteExercise(index)}>{t('workouts.delete_exercise')}</button>}
                               </div>
                           ))}
-                          <button type="button" onClick={handleAddExercise}>Add Exercise</button>
-                          <button type="submit">{isEditing ? "Update Workout" : "Create Workout"}</button>
+                          <button type="button" onClick={handleAddExercise}>{t('workouts.add_exercise')}</button>
+                          <button type="submit">{isEditing ? t('workouts.update_workout') : t('workouts.create_workout')}</button>
                       </form>
                   )}
-                 {workouts.filter(workout => workout.day === day).map((workout) => (
+                  {workouts.filter(workout => workout.day === day).map((workout) => (
                       <div key={workout._id}>
-                        <h3>{workout.title}</h3>
-                        {workout.exercises.map((exercise, index) => (
-                          <div className="exercise-container" key={index}>
-                            <span>{exercise.name} - {exercise.sets} sets x {exercise.reps} reps x {exercise.weight} lbs</span>
-                            
+                          <h3>{workout.title}</h3>
+                          {workout.exercises.map((exercise, index) => (
+                              <div className="exercise-container" key={index}>
+                                  <span>{exercise.name} - {exercise.sets} {t('workouts.sets')} x {exercise.reps} {t('workouts.reps')} x {exercise.weight} lbs</span>
+                              </div>
+                          ))}
+                          <div className="button-container">
+                              <button onClick={() => handleEdit(workout)}>{t('workouts.edit')}</button>
+                              <button onClick={() => handleDelete(workout._id)}>{t('workouts.delete')}</button>
                           </div>
-                        ))}
-                        <div className="button-container">
-                          <button onClick={() => handleEdit(workout)}>Edit</button>
-                          <button onClick={() => handleDelete(workout._id)}>Delete</button>
-                        </div>
                       </div>
-                    ))}
+                  ))}
               </div>
           ))}
       </div>

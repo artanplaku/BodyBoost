@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 import "../styles/Progress.css"
+import { useTranslation } from 'react-i18next';
 
 function Progress() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [images, setImages] = useState([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     fetchImages();
@@ -66,7 +68,7 @@ function Progress() {
   return (
     <div className="container">
     <input type="file" onChange={handleFileChange} />
-    <button onClick={uploadFile}>Upload</button>
+    <button onClick={uploadFile}>{t('progress.upload')}</button>
     {images.map((image) => (
       <img src={`https://bodyboostbackend.onrender.com${image.imageUrl}`} alt="img" key={image._id} className="image" />
     ))}
