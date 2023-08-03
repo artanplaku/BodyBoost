@@ -36,14 +36,14 @@ function LanguageSelector() {
   };
 
   return (
-    <div className={`language-selector ${isDarkMode ? 'dark-mode' : ''}`}>
+    <div className='language-selector'>
       <button onClick={() => setOpen(!open)}>
       <FontAwesomeIcon icon={faGlobe} />
       </button>
       {open && (
         <ul className="language-list">
         {languages.map(({ code, name, country_code }) => (
-          <li key={country_code} onClick={() => changeLanguage(code)}>
+          <li key={country_code} onClick={() => changeLanguage(code)} className={isDarkMode ? 'dark-mode' : ''}>
             <span className={`flag-icon flag-icon-${country_code}`}></span>
             {name}
           </li>
