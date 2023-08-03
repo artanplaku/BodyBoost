@@ -1,0 +1,38 @@
+
+// Define your color variables
+$background-color-light: white;
+$text-color-light: black;
+$navbar-color-light: #333;
+
+$background-color-dark: black;
+$text-color-dark: white;
+$navbar-color-dark: #444;
+
+body.light-mode {
+  background-color: $background-color-light;
+  color: $text-color-light;
+}
+
+body.dark-mode {
+  background-color: $background-color-dark;
+  color: $text-color-dark;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.content {
+  flex: 1;
+  margin-left: 280px;
+  padding-left: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  //  border: 1px solid blue; 
+  width: calc(98% - 300px);
+  height: 100%;
+ 
+}
+  

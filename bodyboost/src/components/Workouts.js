@@ -2,8 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import { WorkoutContext } from '../contexts/WorkoutContext';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
-import '../styles/Workouts.css'
+import '../styles/Workouts.scss'
 import { useTranslation } from 'react-i18next';
+import { ThemeContext } from '../contexts/ThemeContext';
 
 const Workouts = () => {
     const [title, setTitle] = useState('');
@@ -16,6 +17,7 @@ const Workouts = () => {
     const [isEditing, setIsEditing] = useState(false);
     const [selectedDay, setSelectedDay] = useState(null);
     const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    const { isDarkMode } = useContext(ThemeContext);
     const { t } = useTranslation();
 
 
@@ -189,7 +191,7 @@ return (
   <div className='workout-container'>
       <div className="workouts-grid">
           {daysOfWeek.map(day => (
-              <div className="day-row" key={day}>
+              <div className={`day-row ${isDarkMode ? 'day-row-dark' : ''}`} key={day}>
                   <div className="day-row-header">
                       <h2>{t(`workouts.days.${day.toLowerCase()}`)}</h2>
                       <div className="add-exercise-button" onClick={() => setSelectedDay(day)}>

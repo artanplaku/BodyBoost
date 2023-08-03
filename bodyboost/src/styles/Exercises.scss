@@ -17,6 +17,16 @@
   background-color: bisque;
 }
 
+.difficulty-div-dark {
+  width: 200px;
+  height: 100px;
+  margin: 10px;
+  text-align: center;
+  line-height: 100px;
+  background-color: #333; 
+}
+
+
 .muscle-div{
     width: 200px;
     height: 100px;
@@ -24,6 +34,14 @@
     text-align: center;
     line-height: 100px;
     background-color: bisque;
+}
+.muscle-div-dark {
+  width: 200px;
+  height: 100px;
+  margin: 10px;
+  text-align: center;
+  line-height: 100px;
+  background-color: #333;
 }
 
 .exercise-card {
@@ -35,6 +53,18 @@
     padding: 20px;
     margin: 20px;
   }
+
+.exercise-card-dark {
+    position: relative;
+    width: 900px;
+    height: 500px;
+    background-color: #333; 
+    border: 1px solid white; 
+    padding: 20px;
+    margin: 20px;
+    color: white; 
+  }
+
 .muscles-container{
     display: flex;
     flex-direction: column;
@@ -46,7 +76,7 @@
 }
 
 .add-circle {
-  position: relative; /* add this line */
+  position: relative; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,7 +100,7 @@
   padding: 5px;
   position: absolute;
   z-index: 1;
-  bottom: 30%;  /* change this */
+  bottom: 30%;  
   left: 50%;
   transform: translate(-50%, -100%);
 }

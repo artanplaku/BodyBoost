@@ -1,12 +1,13 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; 
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
-import '../styles/Commitment.css'
+import '../styles/Commitment.scss'
 import SignatureCanvas from 'react-signature-canvas';
 import { Collapse } from 'antd';
 import { useTranslation } from 'react-i18next';
+import { ThemeContext } from '../contexts/ThemeContext';
 
 
 const { Panel } = Collapse;
@@ -17,6 +18,7 @@ const Commitment = () => {
     const [submittedContent, setSubmittedContent] = useState("");
     const [signatureImage, setSignatureImage] = useState("");
     const [contracts, setContracts] = useState([]);
+    const { isDarkMode } = useContext(ThemeContext);
     // const [confirmationMessage, setConfirmationMessage] = useState('');
     const sigCanvas = useRef({});
 
@@ -141,7 +143,7 @@ const handleContentChange = (value) => {
       };
 
       return (
-        <div className='contract-container'>
+        <div className={`contract-container ${isDarkMode ? 'dark-mode' : ''}`}>
           <h2>{t('Commitment.commitment_contract')}</h2>
           <p>{t('Commitment.commitment_message')}</p>
           <Collapse accordion>

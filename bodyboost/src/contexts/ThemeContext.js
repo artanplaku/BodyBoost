@@ -1,4 +1,4 @@
-import { useState, createContext } from 'react';
+import { useState, createContext, useEffect } from 'react';
 
 export const ThemeContext = createContext({
     isDarkMode: false,
@@ -6,11 +6,29 @@ export const ThemeContext = createContext({
 });
 
 export const ThemeProvider = ({ children }) => {
-    const [isDarkMode, setIsDarkMode] = useState(false);
-
-    const handleToggle = () => {
-        setIsDarkMode(!isDarkMode);
-    };
+    let initialMode;
+    try {
+        initialMode = JSON.parse(localStorage.getItem('isDarkMode'));
+    } catch (error) {
+        initialMode = false;
+    }
+    const [isDarkMode, setIsDarkMode] = useState(initialMode || false);
+  
+    const handleToggle = (mode) => {
+        setIsDarkMode(mode)
+        localStorage.setItem('isDarkMode', mode);
+        if (mode) {
+          document.body.classList.add('dark-mode');
+          document.body.classList.remove('light-mode');
+        } else {
+          document.body.classList.add('light-mode');
+          document.body.classList.remove('dark-mode');
+        }
+      };
+      useEffect(() => {
+        handleToggle(isDarkMode);
+    }, [isDarkMode]);
+      
 
     return (
         <ThemeContext.Provider value={{ isDarkMode, handleToggle }}>

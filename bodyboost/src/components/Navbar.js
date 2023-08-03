@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import '../styles/Navbar.css'
+import '../styles/Navbar.scss'
 import { AuthContext } from '../contexts/AuthContext';
 import LanguageSelector from './LanguageSelector';
 import { useTranslation } from 'react-i18next';

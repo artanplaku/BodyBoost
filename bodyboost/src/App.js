@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import React  from 'react';
 import Login from './components/Login';
 import Register from './components/Register';
@@ -13,10 +13,13 @@ import Settings from './components/Settings';
 import Challenges from './components/Challenges';
 import Achievements from './components/Achievements';
 import { Routes, Route,  } from 'react-router-dom'
+import { useContext } from 'react';
+import { ThemeContext } from './contexts/ThemeContext';
 
 function App() {
+  const { isDarkMode } = useContext(ThemeContext);
   return (
-    <div className='container'>
+    <div className={`container ${isDarkMode ? 'dark-mode' : ''}`}>
       <Navbar />
       <div className='content'>
 

@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
-import '../styles/Exercises.css'
+import React, { useState, useEffect, useContext } from "react";
+import '../styles/Exercises.scss'
 import { useTranslation } from 'react-i18next';
+import { ThemeContext } from '../contexts/ThemeContext';
+
 const Exercises = () => {
   
     // const [selectedDiv, setSelectedDiv] = useState(null);
@@ -10,6 +12,7 @@ const Exercises = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [selectedDay, setSelectedDay] = useState({});
+    const { isDarkMode } = useContext(ThemeContext);
     const { t } = useTranslation();
     
 
@@ -107,21 +110,21 @@ const Exercises = () => {
                       <h1>{t('exercises.difficulty')}</h1>
                   <div className="difficulty-container">
                       <div 
-                      className="difficulty-div" 
+                      className={`difficulty-div ${isDarkMode ? 'difficulty-div-dark' : ''}`} 
                       onClick={() => handleDifficultyClick(0)} 
                       style={getDifficultyStyle(0)}
                       >
                       {t('exercises.beginner')}
                       </div>
                       <div 
-                      className="difficulty-div"
+                      className={`difficulty-div ${isDarkMode ? 'difficulty-div-dark' : ''}`} 
                       onClick={() => handleDifficultyClick(1)} 
                       style={getDifficultyStyle(1)}
                       >
                       {t('exercises.intermediate')}
                       </div>
                       <div 
-                      className="difficulty-div"
+                      className={`difficulty-div ${isDarkMode ? 'difficulty-div-dark' : ''}`} 
                       onClick={() => handleDifficultyClick(2)} 
                       style={getDifficultyStyle(2)}
                       >
@@ -136,7 +139,7 @@ const Exercises = () => {
               {muscles.map((muscle, index) => (
                   <div
                   key={muscle}
-                  className="muscle-div"
+                  className={`muscle-div ${isDarkMode ? 'muscle-div-dark' : ''}`}
                   onClick={() => handleMuscleClick(index)}
                   style={getMuscleStyle(index)}
                   >
@@ -148,7 +151,7 @@ const Exercises = () => {
 
           <ul>
               {exercises.map((exercise) => (
-                  <div key={exercise.name} className="exercise-card">
+                  <div key={exercise.name} className={`exercise-card ${isDarkMode ? 'exercise-card-dark' : ''}`}>
                   <div className="title-container">
                     <h2>{exercise.name}</h2>
                     <div

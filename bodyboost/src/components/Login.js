@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
-import '../styles/Login.css';
+import '../styles/Login.scss';
 import { useTranslation } from 'react-i18next';
 
 const Login = () => {

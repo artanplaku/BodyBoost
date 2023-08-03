@@ -1,16 +1,28 @@
-.workout-container{
-  width: 100%;
+$light-mode-background: #fff;
+$dark-mode-background: #333;
+$light-mode-text: #333;
+$dark-mode-text: #fff;
 
+body {
+  background-color: $light-mode-background;
+  color: $light-mode-text;
+
+  .dark-mode & {
+    background-color: $dark-mode-background;
+    color: $dark-mode-text;
+  }
 }
 
-input {
+.workout-container {
+  width: 100%;
+
+  input {
     margin: 5px;
     padding: 10px;
     border: 1px solid gray;
     border-radius: 5px;
   }
 
-  /* Style the buttons */
   button {
     margin: 5px;
     padding: 10px;
@@ -21,19 +33,16 @@ input {
     cursor: pointer;
   }
 
-  /* Style the "Add Exercise" button differently */
   button[type="button"] {
     background-color: gray;
   }
 
-  /* Style the workout titles */
   h2 {
     margin: 20px 0;
     font-size: 24px;
     font-weight: bold;
   }
 
-  /* Style the workout exercises */
   li {
     margin: 5px;
     font-size: 18px;
@@ -44,7 +53,6 @@ input {
     grid-auto-rows: min-content;
     gap: 2rem;    
     width: 100%; /* Sets the grid width to 100% */
-    /* box-shadow: 10px 5px 5px black; */
   }
 
   .day-row {
@@ -53,7 +61,9 @@ input {
     width: 90%;
     min-height: 15vh;
     box-shadow: 10px 5px 5px black;
-  
+  }
+  .day-row-dark {
+    box-shadow: 10px 5px 5px rgb(239, 239, 233);
   }
 
   .add-exercise-button {
@@ -67,25 +77,26 @@ input {
     background-color: black;
     color: white;
     margin-left: 10px; 
+
+    span {
+      font-size: 20px; 
+    }
   }
-  
-  .add-exercise-button span {
-    font-size: 20px; 
-  }
-  
+
   .day-row-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
- 
+
   .exercise-container {
     display: flex;
     justify-content: space-between;
-}
+  }
 
-.button-container {
+  .button-container {
     display: flex;
     justify-content: flex-end;
     gap: 10px;
+  }
 }

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import 'flag-icon-css/css/flag-icons.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import "../styles/LanguageSelector.scss"
+import { ThemeContext } from '../contexts/ThemeContext';
 
 
 const languages = [
@@ -27,6 +28,7 @@ const languages = [
 function LanguageSelector() {
   const { i18n } = useTranslation();
   const [open, setOpen] = useState(false);
+  const { isDarkMode } = useContext(ThemeContext);
 
   const changeLanguage = (code) => {
     i18n.changeLanguage(code);
@@ -34,7 +36,7 @@ function LanguageSelector() {
   };
 
   return (
-    <div className='language-selector'>
+    <div className={`language-selector ${isDarkMode ? 'dark-mode' : ''}`}>
       <button onClick={() => setOpen(!open)}>
       <FontAwesomeIcon icon={faGlobe} />
       </button>

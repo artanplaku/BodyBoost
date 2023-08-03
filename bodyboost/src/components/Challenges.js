@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import '../styles/Challenges.css';
+import '../styles/Challenges.scss';
 import { WorkoutContext } from '../contexts/WorkoutContext';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';

@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import '../styles/Register.css'
+import '../styles/Register.scss'
 import { useTranslation } from 'react-i18next';
 
 const Register = () => {

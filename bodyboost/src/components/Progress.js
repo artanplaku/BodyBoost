@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
-import "../styles/Progress.css"
+import "../styles/Progress.scss"
 import { useTranslation } from 'react-i18next';
 
 function Progress() {

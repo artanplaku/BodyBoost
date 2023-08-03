@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from '../contexts/ThemeContext';
-import '../styles/Settings.css'
+import '../styles/Settings.scss'
 import { useTranslation } from 'react-i18next';
 
 const Settings = () => {
@@ -18,7 +18,7 @@ const Settings = () => {
           type="checkbox" 
           className="l" 
           checked={isDarkMode} 
-          onChange={handleToggle}
+          onChange={(e) => handleToggle(e.target.checked)}
         />
       </div>
   </div>

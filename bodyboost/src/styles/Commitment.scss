@@ -28,7 +28,7 @@
     overflow: auto;
 }
 .sigCanvas {
-    margin-left: 55px; /* Adjust this value to suit your needs */
+    margin-left: 55px; 
 }
 .signature-section {
     display: flex;
@@ -41,4 +41,8 @@
     align-items: center;
     gap: 10px;
     margin-left: 500px;
+}
+
+.dark-mode .ant-collapse-header, .dark-mode .ant-collapse-content {
+    color: #fff !important; 
 }
