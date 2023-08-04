@@ -1,6 +1,7 @@
 $background-color: white;
 $error-color: #ff0000;
 $error-background-color: #ffe6e6;
+$dark-background-color: black;
 
 .login-container {
   display: flex;
@@ -8,6 +9,9 @@ $error-background-color: #ffe6e6;
   align-items: center;
   height: 100vh;
   background-color: $background-color;
+  &.dark-mode {
+    background-color: $dark-background-color;
+  }
   
   .login-form {
     background-color: $background-color;
@@ -15,6 +19,9 @@ $error-background-color: #ffe6e6;
     border-radius: 8px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
     width: 300px;
+    &.dark-mode-form {
+      background-color: gray;
+    }
 
     input {
       display: block;

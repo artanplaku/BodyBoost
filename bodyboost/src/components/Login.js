@@ -4,10 +4,12 @@ import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
 import '../styles/Login.scss';
 import { useTranslation } from 'react-i18next';
+import { ThemeContext } from '../contexts/ThemeContext';
 
 const Login = () => {
   const { t } = useTranslation();
 const { setLoggedIn } = useContext(AuthContext);
+const { isDarkMode } = useContext(ThemeContext);
 const [username, setUserName] = useState('');
 const [password, setPassword] = useState('');
 const [loginError, setLoginError] = useState('');
@@ -40,8 +42,8 @@ const handleSubmit = (event) => {
 };
 
   return (
-    <div className='login-container'>
-      <form className='login-form' onSubmit={handleSubmit}>
+    <div className={`login-container ${isDarkMode ? 'dark-mode' : ''}`}>
+      <form className={`login-form ${isDarkMode ? 'dark-mode-form' : ''}`} onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder={t('Login.username')}

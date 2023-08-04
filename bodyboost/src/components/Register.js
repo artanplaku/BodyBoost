@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../styles/Register.scss'
 import { useTranslation } from 'react-i18next';
+import { ThemeContext } from '../contexts/ThemeContext';
 
 const Register = () => {
   const { t } = useTranslation();
@@ -10,6 +11,7 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
+  const { isDarkMode } = useContext(ThemeContext);
 
   const validateForm = () => {
     let formErrors = {};
@@ -91,8 +93,8 @@ const Register = () => {
   
 
   return (
-    <div className='register-container'>
-      <form className='register-form' onSubmit={handleSubmit}>
+    <div className={`register-container ${isDarkMode ? 'dark-mode' : ''}`}>
+      <form className={`register-form ${isDarkMode ? 'dark-mode-form' : ''}`} onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder={t('Register.username')}
