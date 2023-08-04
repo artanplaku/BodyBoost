@@ -10,6 +10,7 @@ const Login = () => {
 const { setLoggedIn } = useContext(AuthContext);
 const [username, setUserName] = useState('');
 const [password, setPassword] = useState('');
+const [loginError, setLoginError] = useState('');
 const navigate = useNavigate();
 
 const handleSubmit = (event) => {
@@ -28,7 +29,13 @@ const handleSubmit = (event) => {
             navigate('/workouts');
         })
         .catch(err => {
-            console.error(err);
+          console.error(err);
+          // Check if error response exists and has data
+          if (err.response && err.response.data) {
+              setLoginError(err.response.data);
+          } else {
+              setLoginError('An error occurred. Please try again.');
+          }
         });
 };
 
@@ -47,6 +54,7 @@ const handleSubmit = (event) => {
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
+        {loginError && <p className="error-message">{loginError}</p>}
         <button type="submit">{t('Login.submit')}</button>
         <div className='register-link'>
           {t('Login.account_question')} 
