@@ -91,7 +91,21 @@ body {
 
   .exercise-container {
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
+    align-items: center;
+  }
+
+  .exercise-circle {
+    height: 20px;
+    width: 20px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    border: 2px solid #000;
+    margin-left: 10px; /* Add this line */
+  }
+  .green-circle {
+    background-color: green;
   }
 
   .button-container {

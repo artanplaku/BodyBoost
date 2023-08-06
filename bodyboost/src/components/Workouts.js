@@ -16,6 +16,7 @@ const Workouts = () => {
     const [editingWorkoutId, setEditingWorkoutId] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
     const [selectedDay, setSelectedDay] = useState(null);
+    const [clickedExercises, setClickedExercises] = useState(new Set());
     const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     const { isDarkMode } = useContext(ThemeContext);
     const { t } = useTranslation();
@@ -186,6 +187,18 @@ const handleSubmit = async (event) => {
     }
   };
 //-------------------------------------------------------------------------
+const handleCircleClick = (workoutId, exerciseIndex) => {
+  const key = `${workoutId}-${exerciseIndex}`;
+  const newClickedExercises = new Set(clickedExercises);
+
+  if (clickedExercises.has(key)) {
+      newClickedExercises.delete(key);
+  } else {
+      newClickedExercises.add(key);
+  }
+
+  setClickedExercises(newClickedExercises);
+};
 
 return (
   <div className='workout-container'>
@@ -244,9 +257,15 @@ return (
                       <div key={workout._id}>
                           <h3>{workout.title}</h3>
                           {workout.exercises.map((exercise, index) => (
-                              <div className="exercise-container" key={index}>
-                                  <span>{exercise.name} - {exercise.sets} {t('workouts.sets')} x {exercise.reps} {t('workouts.reps')} x {exercise.weight} lbs</span>
+                               <div className="exercise-container" key={index}>
+                               <span>{exercise.name} - {exercise.sets} {t('workouts.sets')} x {exercise.reps} {t('workouts.reps')} x {exercise.weight} lbs</span>
+                               <div
+                                    className=
+                                    {`exercise-circle ${clickedExercises.has(`${workout._id}-${index}`) ? 'green-circle' : ''}`}
+                                    onClick={() => handleCircleClick(workout._id, index)}>
                               </div>
+                             </div>
+                            
                           ))}
                           <div className="button-container">
                               <button onClick={() => handleEdit(workout)}>{t('workouts.edit')}</button>
