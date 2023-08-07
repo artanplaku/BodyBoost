@@ -65,13 +65,36 @@ function Progress() {
     }
   };
 
+  const deleteImage = async (imageId) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        console.error('Token is missing.');
+        return;
+    }
+
+    try {
+        await axios.delete(`https://bodyboostbackend.onrender.com/api/images/${imageId}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+        fetchImages();  // Refresh the images after deletion
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+
   return (
     <div className="container">
     <input type="file" onChange={handleFileChange} />
     <button onClick={uploadFile}>{t('progress.upload')}</button>
-    {images.map((image) => (
-      <img src={`https://bodyboostbackend.onrender.com${image.imageUrl}`} alt="img" key={image._id} className="image" />
-    ))}
+    {images.map((imageData, index) => (
+  <div key={imageData._id} className="image-wrapper">
+    <img src={imageData.dataUrl} alt={`img-${index}`} className="image" />
+    <button onClick={() => deleteImage(imageData._id)}>Delete</button>
+  </div>
+))}
   </div>
 );
 }
