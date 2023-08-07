@@ -28,16 +28,22 @@ body.dark-mode .navbar {
   border: none;
   cursor: pointer;
   outline: none;
+  color: rgb(212, 207, 207);
+}
+
+.navbar a:hover,
+.navbar button:hover {
   color: white;
 }
 
-// .navbar a:hover,
-// .navbar button:hover {
-//   color: #f1f1f1;
-// }
-
 .navbar ul {
   list-style: none;
+}
+
+.glow-button {
+  &:hover {
+    color: white;
+  }
 }
 
 

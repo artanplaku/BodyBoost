@@ -8,7 +8,11 @@ import { useTranslation } from 'react-i18next';
 const Challenges = () => {
   const { t } = useTranslation();
   // Use the setWorkouts function from the WorkoutContext to update the state
-  const { workouts, setWorkouts, addWorkouts } = useContext(WorkoutContext);
+  const { 
+    workouts,
+    setWorkouts, 
+    addWorkouts 
+  } = useContext(WorkoutContext);
 
   const handleClick = async () => {
     console.log("Challenge begun!");
