@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import "../styles/Chat.scss"
 
-
-// const API_KEY = "YOUR_OPENAI_API_KEY";
 const systemMessage = {
     "role": "system", 
     "content": "Help the user draft a fitness commitment contract tailored to their goals."
@@ -13,7 +11,7 @@ function Chat() {
     const [isTyping, setIsTyping] = useState(false);
     const [messages, setMessages] = useState([
     { 
-        sender: 'ChatGPT',
+        role: 'assistant',
         content: "Hello! Let's draft your fitness commitment contract. Tell me about your fitness goals, and I'll help you put them into words" 
     }
     ]);
@@ -22,7 +20,7 @@ function Chat() {
     setMessages([
         ...messages, 
         {
-             sender: 'user',
+              role: 'user',
               content: input 
         }
         ]);
@@ -37,17 +35,25 @@ function Chat() {
       messages: [systemMessage, ...messages, { role: 'user', content: message }]
     };
 
+    const token = localStorage.getItem('token');
+
     const response = await fetch("https://bodyboostbackend.onrender.com/api/chat", {
       method: "POST",
       headers: {
-        // "Authorization": "Bearer " + API_KEY,
+        "Authorization": "Bearer " + token,
         "Content-Type": "application/json"
       },
       body: JSON.stringify(requestBody)
     });
 
     const data = await response.json();
-    setMessages([...messages, { sender: 'user', content: message }, { sender: 'ChatGPT', content: data.choices[0].message.content }]);
+    console.log(data)
+    if (data && data.choices && data.choices[0] && data.choices[0].message) {
+        setMessages([...messages, { sender: 'user', content: message }, { sender: 'ChatGPT', content: data.choices[0].message.content }]);
+    } else {
+        console.error("Unexpected response structure:", data);
+    }
+    
     setIsTyping(false);
   };
 
@@ -55,7 +61,7 @@ function Chat() {
     <div className="App">
       <div className="chat-display">
         {messages.map((msg, index) => (
-          <div key={index} className={`chat-message ${msg.sender}`}>
+          <div key={index} className={`chat-message ${msg.role}`}>
             {msg.content}
           </div>
         ))}
