@@ -12,6 +12,7 @@ import Progress from './components/Progress';
 import Settings from './components/Settings';
 import Challenges from './components/Challenges';
 import Achievements from './components/Achievements';
+import Chat from './components/Chat';
 import { Routes, Route,  } from 'react-router-dom'
 import { useContext } from 'react';
 import { ThemeContext } from './contexts/ThemeContext';
@@ -24,6 +25,7 @@ function App() {
       <div className='content'>
 
     <Routes>
+      <Route path="/chat" element={<Chat />} />
       <Route path="/login" element={<Login  />} />
       <Route path="/register" element={<Register />} />
       <Route path="/home" element={<Home />} />
