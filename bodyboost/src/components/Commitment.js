@@ -8,6 +8,7 @@ import SignatureCanvas from 'react-signature-canvas';
 import { Collapse } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { ThemeContext } from '../contexts/ThemeContext';
+import Chat from '../components/Chat';
 
 
 const { Panel } = Collapse;
@@ -156,6 +157,13 @@ const handleContentChange = (value) => {
                 <SignatureCanvas ref={sigCanvas} canvasProps={{width: 400, height: 100, className: 'sigCanvas', style: {backgroundColor: 'rgba(0,0,0,0.1)'}}} />
               </div>
               <button onClick={saveContract} className="save-button">{t('Commitment.save_contract')}</button>
+            </Panel>
+          </Collapse>
+          <p>Need help drafting your commitment? Chat with our assistant below to craft the perfect contract tailored to your goals.</p>
+
+          <Collapse accordion>
+            <Panel header="AI assistant">
+                <Chat />
             </Panel>
           </Collapse>
           <div className="content-wrapper">
