@@ -95,3 +95,13 @@ body.dark-mode .navbar {
     transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
   }
 }
+
+.icon{
+  margin-left: -40px;
+  margin-right: 25px;
+}
+
+.glow-button:hover .icon {
+  color: gold;
+  font-size: 1em;
+}

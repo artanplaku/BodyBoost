@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { ThemeContext } from '../contexts/ThemeContext';
 import '../styles/Settings.scss'
 import { useTranslation } from 'react-i18next';
+import LanguageSelector from './LanguageSelector';
+
 
 const Settings = () => {
   const {isDarkMode, handleToggle} = useContext(ThemeContext);
@@ -20,6 +22,10 @@ const Settings = () => {
           checked={isDarkMode} 
           onChange={(e) => handleToggle(e.target.checked)}
         />
+      </div>
+      <div>
+      <span>Languages:</span>
+      <LanguageSelector />
       </div>
   </div>
 );
