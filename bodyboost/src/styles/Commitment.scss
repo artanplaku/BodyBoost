@@ -14,6 +14,7 @@
     height: 400px;
     width: 100%;
     max-width: 100%;
+    background-color: #fff;
 }
 
 .quill-wrapper, .content-wrapper {
@@ -45,4 +46,16 @@
 
 .dark-mode .ant-collapse-header, .dark-mode .ant-collapse-content {
     color: #fff !important; 
+}
+
+.dark-mode-editor .ql-editor {
+    color: white
+}
+
+.ant-collapse-content-box{
+    background-color: black;
+}
+
+.dark-mode-editor .ql-container.ql-snow {
+    background-color: #121212; /* dark background */
 }

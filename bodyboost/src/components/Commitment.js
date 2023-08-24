@@ -150,7 +150,7 @@ const handleContentChange = (value) => {
           <Collapse accordion>
             <Panel header={t('Commitment.create_contract')} key="1">
               <div className="quill-wrapper">
-                <ReactQuill value={content} onChange={handleContentChange} modules={modules} className="editor"/>
+                <ReactQuill value={content} onChange={handleContentChange} modules={modules} className={`editor ${isDarkMode ? 'dark-mode-editor' : ''}`}/>
               </div>
               <div className="signature-section">
                 <h2>{t('Commitment.signature')}</h2>
