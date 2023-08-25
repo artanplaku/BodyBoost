@@ -29,7 +29,8 @@
     overflow: auto;
 }
 .sigCanvas {
-    margin-left: 55px; 
+    margin-left: 55px;
+    background-color: rgb(160, 158, 158);
 }
 .signature-section {
     display: flex;
@@ -37,6 +38,9 @@
     align-items: center;
 }
 
+.signature{
+color: #121212;
+}
 .signature-display {
     display: flex;
     align-items: center;
@@ -52,8 +56,8 @@
     color: white
 }
 
-.ant-collapse-content-box{
-    background-color: black;
+.dark-mode-editor .ant-collapse-content-box{
+    background-color: rgb(134, 132, 132);
 }
 
 .dark-mode-editor .ql-container.ql-snow {

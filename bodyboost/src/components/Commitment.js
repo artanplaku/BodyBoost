@@ -153,8 +153,8 @@ const handleContentChange = (value) => {
                 <ReactQuill value={content} onChange={handleContentChange} modules={modules} className={`editor ${isDarkMode ? 'dark-mode-editor' : ''}`}/>
               </div>
               <div className="signature-section">
-                <h2>{t('Commitment.signature')}</h2>
-                <SignatureCanvas ref={sigCanvas} canvasProps={{width: 400, height: 100, className: 'sigCanvas', style: {backgroundColor: 'rgba(0,0,0,0.1)'}}} />
+                <h2 className='signature'>{t('Commitment.signature')}</h2>
+                <SignatureCanvas ref={sigCanvas} canvasProps={{width: 400, height: 100, className: 'sigCanvas'}} />
               </div>
               <button onClick={saveContract} className="save-button">{t('Commitment.save_contract')}</button>
             </Panel>

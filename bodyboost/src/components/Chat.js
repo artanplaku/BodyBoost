@@ -17,13 +17,7 @@ function Chat() {
     ]);
 
   const handleSend = async () => {
-    setMessages([
-        ...messages, 
-        {
-              role: 'user',
-              content: input 
-        }
-        ]);
+    setMessages(prevMessages => [...prevMessages, { role: 'user', content: input }]);
     setIsTyping(true);
     await processMessageToChatGPT(input);
     setInput('');
@@ -49,7 +43,8 @@ function Chat() {
     const data = await response.json();
     console.log(data)
     if (data && data.choices && data.choices[0] && data.choices[0].message) {
-        setMessages([...messages, { sender: 'user', content: message }, { sender: 'ChatGPT', content: data.choices[0].message.content }]);
+      setMessages(prevMessages => [...prevMessages, { role: 'assistant', content: data.choices[0].message.content }]);
+
     } else {
         console.error("Unexpected response structure:", data);
     }
