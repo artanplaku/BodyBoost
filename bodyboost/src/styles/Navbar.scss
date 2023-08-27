@@ -7,6 +7,10 @@
   left: 0;
   overflow-x: hidden;
   padding-top: 60px;
+
+  @media (max-width: 480px) {
+    display: none; // Hide the entire navbar on smaller screens
+  }
 }
 
 body.light-mode .navbar {
@@ -38,6 +42,7 @@ body.dark-mode .navbar {
 
 .navbar ul {
   list-style: none;
+  display: block;
 }
 
 .glow-button {
@@ -105,3 +110,50 @@ body.dark-mode .navbar {
   color: gold;
   font-size: 1em;
 }
+
+
+.hamburger {
+  // background-color: white;
+  display: none; // Hide by default
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+  z-index: 2; // Ensure it's above other elements
+  @media (max-width: 480px) {
+    display: block; // Show hamburger icon on smaller screens
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar ul {
+      display: none;
+  }
+
+  .hamburger {
+      display: block;
+  }
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); // Semi-transparent backdrop
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3; // Ensure it's above the navbar and hamburger
+}
+
+.modal {
+  background: #333; // Adjust based on your theme
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 400px;
+  overflow-y: auto; // In case the content is too long
+}
+
