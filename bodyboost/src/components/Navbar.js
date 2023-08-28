@@ -40,17 +40,19 @@ const Navbar = () => {
     </div>
 
     <nav className="navbar">
-    <NavLinks 
+    <NavLinks className="nav-links-common"
       isDarkMode={isDarkMode} 
       isLoggedIn={isLoggedIn} 
       handleLogout={handleLogout} 
       t={t} 
       />
+    </nav>
 
     {isModalOpen && (
       <div className="modal-backdrop" onClick={toggleModal}>
       <div className="modal">
-      <NavLinks 
+      <NavLinks
+            className="nav-links-common" 
             isDarkMode={isDarkMode} 
             isLoggedIn={isLoggedIn} 
             handleLogout={handleLogout} 
@@ -59,7 +61,6 @@ const Navbar = () => {
          </div>
            </div>
            )}
-  </nav>
   </>
   )
 }

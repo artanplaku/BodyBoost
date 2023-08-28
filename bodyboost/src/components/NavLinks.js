@@ -16,9 +16,9 @@ import {
  } 
  from '@fortawesome/free-solid-svg-icons';
 
-const NavLinks = ({ isDarkMode, isLoggedIn, handleLogout, t }) => {
+const NavLinks = ({ className, isDarkMode, isLoggedIn, handleLogout, t }) => {
   return (
-    <div>
+    <div className={className}>
            <ul>
       <li>
         <Link to="/home" 

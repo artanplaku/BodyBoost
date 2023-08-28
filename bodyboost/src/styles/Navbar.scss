@@ -134,6 +134,11 @@ body.dark-mode .navbar {
       display: block;
   }
 }
+@media (min-width: 481px) {
+  .modal-backdrop, .modal {
+    display: none;
+  }
+}
 
 .modal-backdrop {
   position: fixed;
@@ -152,8 +157,34 @@ body.dark-mode .navbar {
   background: #333; // Adjust based on your theme
   padding: 20px;
   border-radius: 10px;
+  height: 80%;
   width: 80%;
   max-width: 400px;
   overflow-y: auto; // In case the content is too long
+
+}
+
+.nav-links-common {
+  a, button {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    display: block;
+    transition: 0.3s;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    color: rgb(212, 207, 207);
+  }
+  
+  a:hover, button:hover {
+    color: white;
+  }
+  ul {
+    list-style: none;
+    display: block;
+  }
+  
 }
 
