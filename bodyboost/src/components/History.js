@@ -118,7 +118,14 @@ const History = () => {
 
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100vh', alignItems: 'center' }}>
+    <div 
+    style={{ 
+      display: 'flex', 
+      flexDirection: 'column', 
+      justifyContent: 'center', 
+      height: '100vh', 
+      alignItems: 'center' 
+      }}>
       <div>
     <button onClick={() => setChartType('bar')}>Bar Chart</button> 
     <button onClick={() => setChartType('line')}>Line Chart</button>

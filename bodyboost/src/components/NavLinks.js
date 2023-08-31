@@ -41,13 +41,13 @@ const NavLinks = ({ className, isDarkMode, isLoggedIn, handleLogout, t }) => {
           {t('navbar.exercises')}
           </Link>
           </li>
-      <li>
+      {/* <li>
         <Link to="/history" 
           className={`glow-button ${isDarkMode ? 'glow-button-dark' : ''}`}>
           <FontAwesomeIcon icon={faHistory} className='icon'/> 
           {t('navbar.history')}
           </Link>
-          </li>
+          </li> */}
       <li>
         <Link to="/progress" 
           className={`glow-button ${isDarkMode ? 'glow-button-dark' : ''}`}>
