@@ -13,18 +13,42 @@ import Settings from './components/Settings';
 import Challenges from './components/Challenges';
 import Achievements from './components/Achievements';
 
-import { Routes, Route,  } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import { useContext } from 'react';
+import { AuthContext } from './contexts/AuthContext';
 import { ThemeContext } from './contexts/ThemeContext';
+
+// const { isLoggedIn, isLoading } = useContext(AuthContext);
+
+function ProtectedRoute() {
+  const { isLoggedIn } = useContext(AuthContext);
+
+  if (isLoggedIn === null) {
+      return <div>Loading...</div>;
+  }
+  
+  if (isLoggedIn) {
+      return <Home />;
+  }
+  
+  return <Navigate to="/login" replace />;
+}
+
+
 
 function App() {
   const { isDarkMode } = useContext(ThemeContext);
+
+ 
+
   return (
     <div className={`container ${isDarkMode ? 'dark-mode' : ''}`}>
       <Navbar />
       <div className='content'>
 
     <Routes>
+      {/* <Route path="/" element={isLoggedIn ? <Navigate to="/home" /> : <Navigate to="/login" />} /> */}
+      <Route path="/" element={<ProtectedRoute />} />
       <Route path="/login" element={<Login  />} />
       <Route path="/register" element={<Register />} />
       <Route path="/home" element={<Home />} />
