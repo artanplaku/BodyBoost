@@ -57,7 +57,7 @@ const History = () => {
        //-------------------------------------------------------
         // Process the workouts data
         clickedExercises.forEach(exercise => {
-          const date = moment(exercise.date).format('YYYY-MM-DD');
+          const date = moment(exercise.completedDate).format('YYYY-MM-DD');
           if (grouped[date]) {
             grouped[date].Workouts += 1;
             if (typeof exercise.weight === 'number') {

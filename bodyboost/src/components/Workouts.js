@@ -219,7 +219,7 @@ const handleCircleClick = async (workoutId, exerciseIndex) => {
 
     // Update state if needed
     const updatedWorkout = {...workouts.find(workout => workout._id === workoutId)};
-    updatedWorkout.exercises[exerciseIndex].clicked = response.data.clicked;
+    updatedWorkout.exercises[exerciseIndex] = {...updatedWorkout.exercises[exerciseIndex], ...response.data};
     setWorkouts(prevWorkouts => prevWorkouts.map(workout => workout._id === workoutId ? updatedWorkout : workout));
 
   } catch (error) {
