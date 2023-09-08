@@ -41,6 +41,15 @@ const Workouts = () => {
               },
             });
             setWorkouts(response.data);
+            const initialClickedExercises = new Set();
+            response.data.forEach(workout => {
+              workout.exercises.forEach((exercise, index) => {
+                if (exercise.clicked) {
+                  initialClickedExercises.add(`${workout._id}-${index}`);
+                }
+              });
+            });
+            setClickedExercises(initialClickedExercises);
             console.log(response.data)
           } catch (error) {
             console.error(error);
@@ -187,18 +196,49 @@ const handleSubmit = async (event) => {
     }
   };
 //-------------------------------------------------------------------------
-const handleCircleClick = (workoutId, exerciseIndex) => {
+const handleCircleClick = async (workoutId, exerciseIndex) => {
   const key = `${workoutId}-${exerciseIndex}`;
+  const exercise = workouts.find(workout => workout._id === workoutId).exercises[exerciseIndex];
+
+  // Optimistically update the UI
   const newClickedExercises = new Set(clickedExercises);
-
   if (clickedExercises.has(key)) {
-      newClickedExercises.delete(key);
+    newClickedExercises.delete(key);
   } else {
-      newClickedExercises.add(key);
+    newClickedExercises.add(key);
   }
-
   setClickedExercises(newClickedExercises);
+
+  try {
+    // Call the backend to toggle the clicked status
+    const response = await axios.put(`https://bodyboostbackend.onrender.com/api/workouts/${workoutId}/exercises/${exercise._id}/click`, {}, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      }
+    });
+
+    // Update state if needed
+    const updatedWorkout = {...workouts.find(workout => workout._id === workoutId)};
+    updatedWorkout.exercises[exerciseIndex].clicked = response.data.clicked;
+    setWorkouts(prevWorkouts => prevWorkouts.map(workout => workout._id === workoutId ? updatedWorkout : workout));
+
+  } catch (error) {
+    console.error(error);
+
+    // If there's an error, revert the UI change
+    const revertedClickedExercises = new Set(clickedExercises);
+    if (revertedClickedExercises.has(key)) {
+      revertedClickedExercises.delete(key);
+    } else {
+      revertedClickedExercises.add(key);
+    }
+    setClickedExercises(revertedClickedExercises);
+    
+    // Notify the user of the error
+    alert('Failed to update the exercise status. Please try again.');
+  }
 };
+
 
 return (
   <div className='workout-container'>

@@ -29,6 +29,10 @@ const History = () => {
           },
         });
         const workouts = response.data;
+
+        const clickedExercises = workouts.flatMap(workout => 
+          workout.exercises.filter(exercise => exercise.clicked)
+        );
   
         // Find the earliest date in the exercises data
         //-----------------------------------------------------
@@ -52,19 +56,18 @@ const History = () => {
         }
        //-------------------------------------------------------
         // Process the workouts data
-        workouts.forEach(workout => {
-          workout.exercises.forEach(exercise => {
-            const date = moment(exercise.date).format('YYYY-MM-DD');
-            if (grouped[date]) {
-              grouped[date].Workouts += 1;
-              if (typeof exercise.weight === 'number') {
-                grouped[date].Weight += exercise.weight;
-              } else {
-                console.log('Non-number weight:', exercise.weight);
-              }
+        clickedExercises.forEach(exercise => {
+          const date = moment(exercise.date).format('YYYY-MM-DD');
+          if (grouped[date]) {
+            grouped[date].Workouts += 1;
+            if (typeof exercise.weight === 'number') {
+              grouped[date].Weight += exercise.weight;
+            } else {
+              console.log('Non-number weight:', exercise.weight);
+            }
             }
           });
-        });
+        ;
         //------------------------------------------------------
         console.log('Grouped workouts:', grouped);
         setData(Object.values(grouped));
