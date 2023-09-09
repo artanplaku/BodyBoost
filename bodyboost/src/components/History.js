@@ -83,7 +83,7 @@ const History = () => {
     if (chartType === 'bar') {
       return (
         <BarChart
-          width={600}
+          width={500}
           height={400}
           data={data}
           margin={{
@@ -101,7 +101,7 @@ const History = () => {
     } else if (chartType === 'line') {
       return (
         <LineChart
-          width={600}
+          width={500}
           height={400}
           data={data}
           margin={{

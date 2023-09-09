@@ -9,13 +9,17 @@ const Home = () => {
   const { isDarkMode } = useContext(ThemeContext);
   
   return (
-    <div>
+    <div className='home-container'>
       <div className='welcomeContainer'>
         <h1>{t('welcome_message')}</h1>
         <span className={`${isDarkMode? "darkNeon":"neonText"}`}>BodyBoost</span>
       </div>
+      <div className='description-container'>
       <p>{t('description_message')}</p>
+      </div>
+      <div className='history-container'>
       <History />
+      </div>
     </div>
   );
 }

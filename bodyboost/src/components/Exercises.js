@@ -106,7 +106,7 @@ const Exercises = () => {
     return (
       <div>
           <div>
-              <div className="container">
+              <div className="exercises-container">
                       <h1>{t('exercises.difficulty')}</h1>
                   <div className="difficulty-container">
                       <div 
