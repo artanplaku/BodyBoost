@@ -5,6 +5,9 @@ import jwtDecode from 'jwt-decode';
 import '../styles/Workouts.scss'
 import { useTranslation } from 'react-i18next';
 import { ThemeContext } from '../contexts/ThemeContext';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import Day from './Day';
 
 const Workouts = () => {
     const [title, setTitle] = useState('');
@@ -239,85 +242,48 @@ const handleCircleClick = async (workoutId, exerciseIndex) => {
   }
 };
 
+const moveWorkout = (workoutId, fromDay, toDay) => {
+  const workoutToMove = workouts.find(workout => workout._id === workoutId);
+  workoutToMove.day = toDay;
+  setWorkouts(prevWorkouts => {
+      return prevWorkouts.filter(workout => workout._id !== workoutId).concat(workoutToMove);
+  });
+};
+
 
 return (
-  <div className='workout-container'>
-      <div className="workouts-grid">
-          {daysOfWeek.map(day => (
-              <div className={`day-row ${isDarkMode ? 'day-row-dark' : ''}`} key={day}>
-                  <div className="day-row-header">
-                      <h2>{t(`workouts.days.${day.toLowerCase()}`)}</h2>
-                      <div className="add-exercise-button" onClick={() => setSelectedDay(day)}>
-                          <span>+</span>
-                      </div>
-                  </div>
-                  {selectedDay === day && (
-                      <form onSubmit={handleSubmit}>
-                          <h2>{t('workouts.add_workout')} {selectedDay}</h2>
-                          <input
-                              type="text"
-                              placeholder={t('workouts.muscle_target')}
-                              value={title}
-                              onChange={(event) => setTitle(event.target.value)}
-                          />
-                          {exercises.map((exercise, index) => (
-                              <div key={index}>
-                                  <input
-                                      type="text"
-                                      placeholder={t('workouts.exercise_name')}
-                                      value={exercise.name}
-                                      onChange={(event) => handleExerciseChange(index, 'name', event.target.value)}
-                                  />
-                                  <input
-                                      type="number"
-                                      placeholder={t('workouts.sets')}
-                                      value={exercise.sets}
-                                      onChange={(event) => handleExerciseChange(index, 'sets', event.target.value)}
-                                  />
-                                  <input
-                                      type="number"
-                                      placeholder={t('workouts.reps')}
-                                      value={exercise.reps}
-                                      onChange={(event) => handleExerciseChange(index, 'reps', event.target.value)}
-                                  />
-                                  <input
-                                      type="number"
-                                      placeholder={t('workouts.weight')}
-                                      value={exercise.weight}
-                                      onChange={(event) => handleExerciseChange(index, 'weight', event.target.value)}
-                                  />
-                                  {isEditing && <button type="button" onClick={() => handleDeleteExercise(index)}>{t('workouts.delete_exercise')}</button>}
-                              </div>
-                          ))}
-                          <button type="button" onClick={handleAddExercise}>{t('workouts.add_exercise')}</button>
-                          <button type="submit">{isEditing ? t('workouts.update_workout') : t('workouts.create_workout')}</button>
-                      </form>
-                  )}
-                  {workouts.filter(workout => workout.day === day).map((workout) => (
-                      <div key={workout._id}>
-                          <h3>{workout.title}</h3>
-                          {workout.exercises.map((exercise, index) => (
-                               <div className="exercise-container" key={index}>
-                               <span>{exercise.name} - {exercise.sets} {t('workouts.sets')} x {exercise.reps} {t('workouts.reps')} x {exercise.weight} lbs</span>
-                               <div
-                                    className=
-                                    {`exercise-circle ${clickedExercises.has(`${workout._id}-${index}`) ? 'green-circle' : ''}`}
-                                    onClick={() => handleCircleClick(workout._id, index)}>
-                              </div>
-                             </div>
-                            
-                          ))}
-                          <div className="button-container">
-                              <button onClick={() => handleEdit(workout)}>{t('workouts.edit')}</button>
-                              <button onClick={() => handleDelete(workout._id)}>{t('workouts.delete')}</button>
-                          </div>
-                      </div>
-                  ))}
-              </div>
-          ))}
-      </div>
-  </div>
+    <DndProvider backend={HTML5Backend}>
+        <div className='workout-container'>
+            <div className="workouts-grid">
+                {daysOfWeek.map(day => (
+                  <Day 
+                    key={day} 
+                    day={day} 
+                    workouts={workouts} 
+                    moveWorkout={moveWorkout}
+                    isDarkMode={isDarkMode}
+                    setSelectedDay={setSelectedDay}
+                    selectedDay={selectedDay}
+                    handleSubmit={handleSubmit}
+                    clickedExercises={clickedExercises}
+                    handleCircleClick={handleCircleClick}
+                    handleEdit={handleEdit}
+                    handleDelete={handleDelete}
+                    title={title}
+                    setTitle={setTitle}
+                    exercises={exercises}
+                    handleExerciseChange={handleExerciseChange}
+                    isEditing={isEditing}
+                    handleDeleteExercise={handleDeleteExercise}
+                    handleAddExercise={handleAddExercise}
+                />
+                ))}
+            </div>
+        </div>
+    </DndProvider>
+
 );
 };
 
 export default Workouts;
+
