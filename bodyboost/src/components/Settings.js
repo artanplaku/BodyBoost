@@ -12,8 +12,9 @@ const Settings = () => {
  
 
   return (
-    <div>
+    <div className={`settings-container ${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
     <h2>{t('Settings.title')}</h2>
+
       <div className="theme-toggle">
       <span>{isDarkMode ? t('Settings.dark') : t('Settings.light')} {t('Settings.mode')}:</span>
         <input 
@@ -23,7 +24,8 @@ const Settings = () => {
           onChange={(e) => handleToggle(e.target.checked)}
         />
       </div>
-      <div>
+
+      <div className='language-selection'>
       <span>Languages:</span>
       <LanguageSelector />
       </div>
