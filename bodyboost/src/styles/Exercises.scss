@@ -1,100 +1,89 @@
-.exercises-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-.difficulty-container{
-    display: flex;
-    justify-content: center;
-    max-width: 90vw;
-
+:root {
+  --light-bg: #f5f5f5;
+  --light-text: #333;
+  --dark-bg: #444;
+  --dark-text: #f5f5f5;
+  --card-width: 200px;
+  --card-height: 100px;
 }
-.difficulty-div{
-  width: 200px;
-  height: 100px;
-  margin: 10px;
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.exercises-container,
+.muscles-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.difficulty-container,
+.muscles-container-divs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.difficulty-div,
+.muscle-div {
+  width: var(--card-width);
+  height: var(--card-height);
   text-align: center;
-  line-height: 100px;
-  background-color: #f5f5f5;
+  line-height: var(--card-height);
+  background-color: var(--light-bg);
+  color: var(--light-text);
   border-radius: 15px;
   transition: all 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
   &:hover {
-    transform: translateY(-5px);
+      transform: translateY(-5px);
   }
 }
 
-.muscle-div{
-    width: 200px;
-    height: 100px;
-    margin: 10px;
-    text-align: center;
-    line-height: 100px;
-    background-color: #f5f5f5;
-}
-
-.difficulty-div-dark {
-  width: 200px;
-  height: 100px;
-  margin: 10px;
-  text-align: center;
-  line-height: 100px;
-  background-color: #444;
-  color: #f5f5f5; 
-}
-
-
-.muscle-div-dark {
-  width: 200px;
-  height: 100px;
-  margin: 10px;
-  text-align: center;
-  line-height: 100px;
-  background-color: #333;
+[data-theme="dark"] .difficulty-div,
+[data-theme="dark"] .muscle-div {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
 }
 
 .exercise-card {
   position: relative;
-  width: 900px;
-  height: 500px;
-  background-color: #f5f5f5;
+  width: 90vw;
+  max-width: 900px;
+  background-color: var(--light-bg);
+  color: var(--light-text);
   border: 1px solid #e0e0e0;
   padding: 20px;
-  margin: 20px;
+  margin: 20px auto;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  // box-sizing: border-box; 
   
   &:hover {
-    transform: translateY(-5px);
+      transform: translateY(-5px);
   }
 }
 
-.exercise-card-dark {
-  background-color: #444;
-  color: #f5f5f5;
+.exercise-content {
+  flex: 2 ;  /* take up 3/4 of the available width */
+  padding-right: 20px;  /* some spacing between content and image */
+}
+
+[data-theme="dark"] .exercise-card {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
   border: 1px solid #555;
 }
 
-  .exercise-card, .exercise-card-dark {
-    max-width: 70vw; 
-}
-
-.muscles-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.muscles-container-divs{
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 50vw;
-}
-
 .add-circle {
-  position: relative; 
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -104,12 +93,10 @@
   background-color: #000;
   color: #fff;
   cursor: pointer;
-  right: 10px;
-  top: 10px;
   transition: all 0.3s ease;
-  
+
   &:hover {
-    transform: scale(1.1);
+      transform: scale(1.1);
   }
 }
 
@@ -123,7 +110,7 @@
   padding: 5px;
   position: absolute;
   z-index: 1;
-  bottom: 30%;  
+  bottom: 30%;
   left: 50%;
   transform: translate(-50%, -100%);
 }
@@ -131,50 +118,96 @@
 .add-circle:hover .tooltip-text {
   display: block;
 }
+
 .title-container {
+  font-size: 2vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+// @media screen and (max-width: 744px) {
+//   .exercise-card {
+//       width: 70vw;
+//       padding: 20px 10px;
+//   }
+// }
+
+.exercise-images {
+  flex: 2;  /* take up % of the available width */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.exercise-image {
+  width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 390px) {
+  .difficulty-container{
+    margin-left: 24px;
+  }
+  .muscles-container-divs{
+    gap: 15px;  /* Adjust spacing */
+    margin-left: 24px;
+  }
+  
+  .muscle-div {
+      width: calc((90% - 2*5px) / 2);  /* Taking 2 cards in a row for mobile */
+      height: 80px;  /* Adjust height if necessary */
+  }
+  .exercise-card{
+    margin-right: 10px;
+  }
+  .title-container {
+    font-size: 3.5vw; /* Adjust font size */
+}
+.exercise-instructions{
+  font-size: 3vw;
+}
+}
+
 @media screen and (min-width: 391px) and (max-width: 744px) {
-  .difficulty-container{
-    display: flex;
-    justify-content: center;
-    max-width: 70vw;
-    padding-left: 70px;
-
+  /* Adjustments for Portrait size */
+  .muscles-container-divs{
+    gap: 8px;  /* Adjust spacing */
+  }
+  .muscle-div {
+    width: calc((100% - 3*8px) / 3);  /* Taking 3 cards in a row for portrait */
+    height: 90px;  /* Adjust height if necessary */
 }
-.exercise-card, .exercise-card-dark {
-  max-width: 60vw;
-  padding-left: 90px; 
-}
+  .exercise-card {
+      width: 60vw; /* Adjust width */
+  }
 
-.muscles-container-divs{
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 70vw;
-  padding-left: 70px;
+  .title-container {
+      font-size: 3.5vw; /* Adjust font size */
+  }
 }
 
+@media screen and (min-width: 745px) and (max-width: 1024px) {
+  /* Adjustments for Desktop size */
+  .exercise-card {
+      width: 70vw; /* Adjust width */
+  }
+
+  .title-container {
+      font-size: 1.2vw; /* Adjust font size */
+  }
 }
 
-@media screen and (min-width: 745px) {
-  .difficulty-container{
-    display: flex;
-    justify-content: center;
-    max-width: 60vw;
+/* Larger than Desktop */
+@media screen and (min-width: 1025px) {
+  /* Adjustments for Larger Desktops or screens bigger than 1024px */
+  .exercise-card {
+      width: 50vw; /* Adjust width */
+      max-width: 1100px; /* Maximum width */
+  }
 
-}
-.exercise-card, .exercise-card-dark {
-  max-width: 60vw;
-  padding-left: 90px; 
-}
-
-.muscles-container-divs{
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 50vw;
-  padding-left: 60px;
-}
+  .title-container {
+      font-size: 1vw; /* Adjust font size */
+  }
 }

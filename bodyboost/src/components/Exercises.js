@@ -32,24 +32,30 @@ const Exercises = () => {
 
     const muscles = [
       "abdominals",
-      "abductors",
-      "biceps",
-      "calves",
-      "chest",
-      "forearms",
-      "glutes",
       "hamstrings",
-      "lats",
-      "lower_back",
-      "middle_back",
-      "neck",
+      "calves",
+      "shoulders",
+      "adductors",
+      "glutes",
       "quadriceps",
+      "biceps",
+      "forearms",
+      "abductors",
+      "triceps",
+      "chest",
+      "lower_back",
       "traps",
-      "triceps"
+      "middle_back",
+      "lats",
+      "neck",
     ];
 
     const handleDifficultyClick = index => {
-      setSelectedDifficulty(selectedDifficulty === index ? null : index);
+      setSelectedDifficulty(prevSelectedDifficulty => 
+        prevSelectedDifficulty === index ? null : index
+      );
+      console.log("clicked difficulty")
+      console.log(selectedDifficulty)
     };
 
     const handleMuscleClick = index => {
@@ -67,33 +73,45 @@ const Exercises = () => {
     
   
     useEffect(() => {
-        setLoading(true);
-        let url = "https://api.api-ninjas.com/v1/exercises?";
-        if (selectedDifficulty !== null) {
-            url += `difficulty=${difficulties[selectedDifficulty]}&`;
-          }
-          if (selectedMuscle !== null) {
-            url += `muscle=${muscles[selectedMuscle]}&`;
-          }
-          
-        fetch(url, {
+      console.log("selectedDifficulty in useEffect:", selectedDifficulty);
+      setLoading(true);
+      
+      const params = new URLSearchParams();
+      
+      if (selectedDifficulty !== null) {
+          params.append('level', difficulties[selectedDifficulty]);
+      }
+      
+      if (selectedMuscle !== null) {
+          params.append('muscle', muscles[selectedMuscle]);
+      }
+      
+      const url = `https://bodyboostbackend.onrender.com/api/exercises?${params.toString()}`;
+      console.log(url)
+      
+      fetch(url, {
           method: "GET",
-          headers: { "X-Api-Key": "pwZ06FOs/ltkgvPROwtC3w==VQYX0Z0OPV6gaSun", "Content-Type": "application/json" }
-        })
-        .then(res => {
-            console.log("Response:", res);
-            return res.json();
-          })
-          .then(result => {
-            console.log(result);
-            setExercises(result);
-            setLoading(false);
-          })
-          .catch(err => {
-            setError(err);
-            setLoading(false);
-          });
-      }, [selectedDifficulty, selectedMuscle]);
+          headers: { "Content-Type": "application/json" }
+      })
+      .then(res => {
+          if (!res.ok) {
+              throw new Error("Network response was not ok");
+          }
+          return res.json();
+      })
+      .then(result => {
+          console.log(result)
+          setExercises(result);
+          setLoading(false);
+      })
+      .catch(err => {
+          setError(err);
+          setLoading(false);
+      });
+  }, [selectedDifficulty, selectedMuscle]);
+  
+  
+  
   
     if (loading) {
       return <div>Loading...</div>;
@@ -150,53 +168,65 @@ const Exercises = () => {
           </div>
 
           <ul>
-              {exercises.map((exercise) => (
-                  <div key={exercise.name} className={`exercise-card ${isDarkMode ? 'exercise-card-dark' : ''}`}>
-                  <div className="title-container">
-                    <h2>{exercise.name}</h2>
-                    <div
-                          className="add-circle"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setSelectedDay({ 
-                              ...selectedDay, 
-                              [exercise.name]: selectedDay && selectedDay[exercise.name] ? null : daysOfWeek[0] 
-                            });
-                          }}
-                        >
+      {exercises.map((exercise) => (
+        <div key={exercise._id}>
+          <div className={`exercise-card ${isDarkMode ? 'exercise-card-dark' : ''}`}>
+            <div className="exercise-content">
+              <div className="title-container">
+                <h2>{exercise.name}</h2>
+                <div
+                  className="add-circle"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedDay({ 
+                      ...selectedDay, 
+                      [exercise.name]: selectedDay && selectedDay[exercise.name] ? null : daysOfWeek[0] 
+                    });
+                  }}
+                >
                   +
                   <span className="tooltip-text">{t('exercises.add_to_workouts')}</span>
-                      {selectedDay && selectedDay[exercise.name] && (
-                        <div>
-                          <select
-                          value={selectedDay[exercise.name]}
-                          onChange={(e) => {
-                            e.stopPropagation(); 
-                            handleDaySelect(exercise.name, e.target.value);
-                          }}
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <option value="">{t('exercises.select_a_day')}</option>
-                          {daysOfWeek.map((day) => (
-                            <option key={day} value={day}>
-                              {t(`exercises.day_${day.toLowerCase()}`)}
-                            </option>
-                          ))}
-                        </select>
-                    </div>
-                  )}
-                    </div>
-                  </div>
-                  <p>{t('exercises.difficulty')}: {exercise.difficulty}</p>
-                  <p>{t('exercises.muscle')}: {exercise.muscle}</p>
-                  <p>{t('exercises.instructions')}: {exercise.instructions}</p>
                 </div>
-              
-              )
-              )}
-          </ul>
-
+                {selectedDay && selectedDay[exercise.name] && (
+                  <div>
+                    <select
+                      value={selectedDay[exercise.name]}
+                      onChange={(e) => {
+                        e.stopPropagation(); 
+                        handleDaySelect(exercise.name, e.target.value);
+                      }}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <option value="">{t('exercises.select_a_day')}</option>
+                      {daysOfWeek.map((day) => (
+                        <option key={day} value={day}>
+                          {t(`exercises.day_${day.toLowerCase()}`)}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
               </div>
+              <p>{t('exercises.difficulty')}: {exercise.level}</p>
+              <p>{t('exercises.muscle')}: {exercise.primaryMuscles.join(', ')}</p>
+              <p className="exercise-instructions">{t('exercises.instructions')}: {exercise.instructions.join('. ')}</p>
+            </div>
+            <div className="exercise-images">
+              {exercise.images.map((image, index) => (
+                <img
+                  className="exercise-image"
+                  key={index} 
+                  src={`https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/${image}`} 
+                  alt={`${exercise.name} step ${index + 1}`} 
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </ul>
+
+    </div>
   );
   };
 
