@@ -46,3 +46,50 @@
   align-items: center;
   justify-content: center;
 }
+
+.weights-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0; 
+  padding: 0 10%; 
+}
+
+.weight-entry {
+  flex: 1;
+  border: 1px solid rgba(220,220,220,0.5); 
+  background-color: rgba(250, 250, 250, 0.8); 
+  border-radius: 5px;
+  margin: 0 10px; 
+  padding: 20px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  > div {
+      font-size: 24px; 
+      font-weight: bold;
+  }
+  
+  > label {
+      margin-top: 10px;
+      font-size: 18px;
+      color: rgba(0,0,0,0.6);
+  }
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #3498db;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  
+  &:hover {
+      background-color: #2980b9;
+  }
+}
