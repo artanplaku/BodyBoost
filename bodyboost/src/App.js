@@ -12,6 +12,7 @@ import Progress from './components/Progress';
 import Settings from './components/Settings';
 import Challenges from './components/Challenges';
 import Achievements from './components/Achievements';
+import Landing from './components/Landing';
 
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { useContext } from 'react';
@@ -38,17 +39,19 @@ function ProtectedRoute() {
 
 function App() {
   const { isDarkMode } = useContext(ThemeContext);
+  const { isLoggedIn } = useContext(AuthContext);
 
  
 
   return (
     <div className={`container ${isDarkMode ? 'dark-mode' : ''}`}>
-      <Navbar />
+      {isLoggedIn && <Navbar />}
       <div className='content'>
 
     <Routes>
       {/* <Route path="/" element={isLoggedIn ? <Navigate to="/home" /> : <Navigate to="/login" />} /> */}
       <Route path="/" element={<ProtectedRoute />} />
+      <Route path="/landing" element={<Landing  />} />
       <Route path="/login" element={<Login  />} />
       <Route path="/register" element={<Register />} />
       <Route path="/home" element={<Home />} />

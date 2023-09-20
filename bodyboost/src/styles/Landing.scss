@@ -1,0 +1,67 @@
+.landing-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 90vh;
+    padding: 20px;
+}
+
+.top-left-image {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.top-right-image {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.below-top-right-image {
+    position: absolute;
+    top: 90px; 
+    right: 10px;
+}
+
+.title-description {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    width: 100%;
+    
+}
+
+.footer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+ .login-button {
+    padding: 10px 20px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+}
+.start-button {
+    padding: 10px 20px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 25px; 
+    background-color: #2c3e50; 
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+
+    &:hover {
+        background-color: #1a2836; 
+    }
+}
+
+
