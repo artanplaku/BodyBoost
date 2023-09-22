@@ -13,7 +13,7 @@ const Landing = () => {
       <h1 className="website-name">Body<span>boost</span></h1>
         <p className="description">Where strength meets motivation</p>
       </div>
-      {/* <img src={cloud} alt="Below Top Right" className="below-top-right-image" /> */}
+      <img src={cloud} alt="Below Top Right" className="below-top-right-image" />
 
 
       <div className="footer-section">
