@@ -2,9 +2,16 @@ import React from 'react'
 import "../styles/Landing.scss"
 import topLeftImage from "../assets/images/exercises1.png"
 import cloud from "../assets/images/cloud.png"
+import { useNavigate } from 'react-router-dom'
 
 
 const Landing = () => {
+    const navigate = useNavigate()
+
+    const handleLogin = () => {
+        navigate('/login')
+    }
+
   return (
     <div className="landing-page">
       <img src={cloud} alt="Top Left" className="top-left-image" />
@@ -20,7 +27,7 @@ const Landing = () => {
       <img src={topLeftImage} alt="Description " className="above-start-image" />
         <button className="start-button">Start</button>
         <p className="login-prompt">
-          Already have an account? <button className="login-button">Login</button>
+          Already have an account? <button className="login-button" onClick={handleLogin}>Login</button>
         </p>
       </div>
     </div>
