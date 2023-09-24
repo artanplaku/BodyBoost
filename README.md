@@ -17,6 +17,4 @@ Capture and chronicle your fitness evolution with periodic photos, witnessing th
 **Fitness Commitment Contract**: 
 Seal your dedication by drafting a personal pledge, a testament to your unwavering commitment to health and progress.
 
-## Live Demo
 
-Experience BodyBoost [here](https://mybodyboost.netlify.app/).
