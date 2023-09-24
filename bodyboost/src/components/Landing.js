@@ -11,6 +11,9 @@ const Landing = () => {
     const handleLogin = () => {
         navigate('/login')
     }
+    const handleNext = () => {
+        navigate('/carousel')
+    }
 
   return (
     <div className="landing-page">
@@ -25,7 +28,7 @@ const Landing = () => {
 
       <div className="footer-section">
       <img src={topLeftImage} alt="Description " className="above-start-image" />
-        <button className="start-button">Start</button>
+        <button className="start-button" onClick={handleNext}>Start</button>
         <p className="login-prompt">
           Already have an account? <button className="login-button" onClick={handleLogin}>Login</button>
         </p>

@@ -13,6 +13,7 @@ import Settings from './components/Settings';
 import Challenges from './components/Challenges';
 import Achievements from './components/Achievements';
 import Landing from './components/Landing';
+import Carousel from './components/Carousel';
 
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { useContext } from 'react';
@@ -52,6 +53,7 @@ function App() {
       {/* <Route path="/" element={isLoggedIn ? <Navigate to="/home" /> : <Navigate to="/login" />} /> */}
       <Route path="/" element={<ProtectedRoute />} />
       <Route path="/landing" element={<Landing  />} />
+      <Route path="/carousel" element={<Carousel  />} />
       <Route path="/login" element={<Login  />} />
       <Route path="/register" element={<Register />} />
       <Route path="/home" element={<Home />} />
