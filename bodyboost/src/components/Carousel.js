@@ -37,7 +37,7 @@ const Carousel = () => {
       if (currentIndex < images.length - 1) {
         setCurrentIndex(currentIndex + 1);
       } else {
-        navigate("/landing");
+        navigate("/nameform");
       }
     };
 
