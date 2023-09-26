@@ -1,0 +1,81 @@
+.goal-and-profile {
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  
+  .progress-container {
+    height: 5px;
+    background-color: #E0E0E0; 
+    // margin-bottom: 20px;
+    width: 100%;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .progress-bar {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    background-color: #007BFF;  
+    transition: width 1s ease;
+  }
+  
+  .question {
+    margin: 20px 0;
+    font-size: 18px;
+  }
+  
+  .gender-options {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  
+    .gender-option {
+      padding: 10px;
+      border: none;
+      background-color: #d9e5f0;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  
+      &.selected {
+        background-color: #007BFF;
+        color: white;
+      }
+    }
+  }
+
+.height-inputs-group {
+    display: flex;
+    gap: 10px;
+}
+.height-inputs-group .feet-input,
+.height-inputs-group .inches-input {
+    width: calc(50% - 5px);
+    box-sizing: border-box;
+    height: 50px; 
+    padding: 15px;
+    font-size: 16px;
+    background-color: #d9e5f0;
+    border: none;
+    border-radius: 9px;
+    transition: all 0.3s ease;
+    outline: none;
+    display: block;
+}
+  
+ .height-input, .age-input,
+ .weight-input, .goal-input{
+    box-sizing: border-box;
+    height: 50px;
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    background-color: #d9e5f0;
+    border: none;
+    border-radius: 9px;
+    transition: all 0.3s ease;
+    outline: none;
+    display: block;
+ }
