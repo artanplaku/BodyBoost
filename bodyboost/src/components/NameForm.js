@@ -3,10 +3,13 @@ import React, { useContext, useState } from 'react';
 import "../styles/NameForm.scss"
 import sunflower from "../assets/images/sunflower.png"
 import { UserContext } from '../contexts/UserContext';
+import { useNavigate } from 'react-router-dom'
 
 const NameForm = () => {
   const { setUserData } = useContext(UserContext);
   const [firstName, setFirstName] = useState('');
+
+  const navigate = useNavigate()
 
   const handleInputChange = (e) => {
     setFirstName(e.target.value); 
@@ -14,6 +17,7 @@ const NameForm = () => {
 
   const handleSubmit = () => {
     setUserData(prevData => ({ ...prevData, firstName }));
+    navigate('/goal')
   };
   return (
     <div className="name-form">
@@ -26,6 +30,7 @@ const NameForm = () => {
 
       <div className="input-container">
         <input 
+        className="nameform-input"
         type="text" 
         id="firstname" 
         placeholder=" "

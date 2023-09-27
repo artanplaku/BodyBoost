@@ -61,4 +61,7 @@ $dark-background-color: black;
       border-radius: 5px;
     }
   }
+  @media (min-width: 481px) {
+    margin-right: 280px;
+  }
 }

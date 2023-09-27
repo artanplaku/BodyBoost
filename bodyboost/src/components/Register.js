@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import '../styles/Register.scss'
 import { useTranslation } from 'react-i18next';
 import { ThemeContext } from '../contexts/ThemeContext';
+import clock from "../assets/images/clock.png"
 
 const Register = () => {
   const { t } = useTranslation();
@@ -94,20 +95,26 @@ const Register = () => {
 
   return (
     <div className={`register-container ${isDarkMode ? 'dark-mode' : ''}`}>
+      <div className='register-wrapper'>
+      <div className="register-header">
+    <img src={clock} alt="register" className="register-image"/>
+    <h1>Create your account</h1>
+    <p>Register your account to <br/>save your settings</p>
+  </div>
       <form className={`register-form ${isDarkMode ? 'dark-mode-form' : ''}`} onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder={t('Register.username')}
           value={username}
           onChange={(event) => setUserName(event.target.value)}
-        />
+          />
         {errors.username && <div className="error-message">{errors.username}</div>}
         <input
           type="email"
           placeholder={t('Register.email')}
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-        />
+          />
         {errors.server && <div className="error-message">{errors.server}</div>}
         {errors.email && <div className="error-message">{errors.email}</div>}
         <input
@@ -115,7 +122,7 @@ const Register = () => {
           placeholder={t('Register.password')}
           value={password}
           onChange={(event) => setPassword(event.target.value)}
-        />
+          />
        {errors.password && <div className="error-message">{errors.password}</div>}
         <button type="submit">{t('Register.submit')}</button>
         <div className='login-link'>
@@ -123,6 +130,7 @@ const Register = () => {
           <Link to='/login'>{t('Register.login')}</Link>
         </div>
       </form>
+      </div>
     </div>
   )
 }

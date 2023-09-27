@@ -17,7 +17,7 @@ import Carousel from './components/Carousel';
 import NameForm from './components/NameForm';
 import GoalAndProfile from './components/GoalAndProfile';
 
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { useContext } from 'react';
 import { AuthContext } from './contexts/AuthContext';
 import { ThemeContext } from './contexts/ThemeContext';
@@ -44,12 +44,16 @@ function App() {
   const { isDarkMode } = useContext(ThemeContext);
   const { isLoggedIn } = useContext(AuthContext);
 
+  const location = useLocation();
+
+  const isIntroComponent =
+    ["/landing", "/nameform", "/carousel", "/goal"].includes(location.pathname);
  
 
   return (
     <div className={`container ${isDarkMode ? 'dark-mode' : ''}`}>
       {isLoggedIn && <Navbar />}
-      <div className='content'>
+      <div className={`content ${isIntroComponent ? '' : 'with-navbar'}`}>
 
     <Routes>
       {/* <Route path="/" element={isLoggedIn ? <Navigate to="/home" /> : <Navigate to="/login" />} /> */}

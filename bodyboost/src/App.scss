@@ -34,7 +34,11 @@ body.dark-mode {
   align-items: flex-start;
   width: calc(98% - 300px);
   height: 100%;
- 
+}
+.content.with-navbar {
+  margin-left: 280px;
+  padding-left: 20px;
+
 }
   
 @media (max-width: 480px) {
@@ -42,5 +46,9 @@ body.dark-mode {
     margin-left: 0;
     padding-left: 0;
     // margin-top: 90px; 
+  }
+  .content.with-navbar {
+    margin-left: 0;
+    padding-left: 0;
   }
 }

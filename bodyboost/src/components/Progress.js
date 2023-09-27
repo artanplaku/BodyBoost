@@ -110,7 +110,7 @@ const prevImage = () => {
 
 
 return (
-  <div className="progress-container">
+  <div className="progress-carousel-container">
     <div className="dropdown-container">
 
    <button className="dropdown-trigger" onClick={() => setShowDropdown(prev => !prev)}>
