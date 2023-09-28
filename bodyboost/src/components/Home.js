@@ -21,6 +21,13 @@ const Home = () => {
       <div className='description-container'>
       <p>{t('description_message')}</p>
       </div>
+      <div className="divider-container">
+      <span className="label label-left">Weight</span>
+      <hr className="horizontal-line"/>
+      <span className="label label-right">Exercises</span>
+    </div>
+    <div className='bottom-section'>
+
       <div className='weights-container'>
         <div className='weight-entry'>
           <div>{startWeight}</div>
@@ -39,6 +46,7 @@ const Home = () => {
       <div className='history-container'>
       <History />
       </div>
+    </div>
     </div>
   );
 }
