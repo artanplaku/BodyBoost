@@ -15,40 +15,42 @@ const Home = () => {
   return (
     <div className='home-container'>
       <div className='welcomeContainer'>
-        <h1>{t('welcome_message')}</h1>
-        <span className={`${isDarkMode? "darkNeon":"neonText"}`}>BodyBoost</span>
+        <h1>{t('welcome_message')} BodyBoost</h1>
+        {/* <span className={`${isDarkMode? "darkNeon":"neonText"}`}>BodyBoost</span> */}
       </div>
       <div className='description-container'>
-      <p>{t('description_message')}</p>
+        <p>{t('description_message')}</p>
       </div>
       <div className="divider-container">
-      <span className="label label-left">Weight</span>
-      <hr className="horizontal-line"/>
-      <span className="label label-right">Exercises</span>
-    </div>
-    <div className='bottom-section'>
-
-      <div className='weights-container'>
-        <div className='weight-entry'>
-          <div>{startWeight}</div>
-          <label>Start weight</label>
-        </div>
-        <div className='weight-entry'>
-          <div>{currentWeight}</div>
-          <label>Current weight</label>
-        </div>
-        <div className='weight-entry'>
-          <div>{goalWeight}</div>
-          <label>Goal weight</label>
-        </div>
-        <button>Add a weight entry</button>
+        <span className="label label-left">Weight</span>
+        <hr className="horizontal-line"/>
+        <span className="label label-right">Exercises</span>
       </div>
-      <div className='history-container'>
-      <History />
+      <div className='bottom-section'>
+        <div className="left-section">   
+          <div className='weights-container'>
+            <div className='weight-entry'>
+              <div>{startWeight}</div>
+              <label>Start weight</label>
+            </div>
+            <div className='weight-entry'>
+              <div>{currentWeight}</div>
+              <label>Current weight</label>
+            </div>
+            <div className='weight-entry'>
+              <div>{goalWeight}</div>
+              <label>Goal weight</label>
+            </div>
+          </div>
+          <button>Add a weight entry</button>
+        </div>  
+        <div className='history-container'>
+          <History />
+        </div>
       </div>
-    </div>
     </div>
   );
+  
 }
 
 export default Home;

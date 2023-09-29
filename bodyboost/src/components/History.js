@@ -126,14 +126,14 @@ const History = () => {
       display: 'flex', 
       flexDirection: 'column', 
       justifyContent: 'center', 
-      height: '100vh', 
+      // height: '100vh', 
       alignItems: 'center' 
       }}>
+    {renderChart()}
       <div>
     <button onClick={() => setChartType('bar')}>Bar Chart</button> 
     <button onClick={() => setChartType('line')}>Line Chart</button>
     </div>
-    {renderChart()}
   </div>
 
 );

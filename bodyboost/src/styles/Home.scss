@@ -45,6 +45,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-bottom: 20px;
+  margin-top: -25px;
 }
 
 .weights-container {
@@ -54,27 +56,6 @@
   margin: 20px 0; 
   padding: 0 10%; 
 }
-
-// .history-container {
-//   margin: 20px 0;
-//   height: 200px;
-// }
-
-
-// .bottom-section {
-//   display: flex;
-//   justify-content: space-between;
-//   width: 100%;
-  
-//   @media (min-width: 1001px) {
-//     .weights-container, .history-container {
-//       // flex: 0 0 48%; 
-//     }
-//   }
-// }
-
-
-
 
 .weight-entry {
   flex: 1;
@@ -105,7 +86,7 @@ button {
   font-size: 16px;
   border: none;
   border-radius: 5px;
-  background-color: #3498db;
+  background-color: teal;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -120,9 +101,10 @@ button {
     margin: 30px 0;
 
   .horizontal-line {
-    border: none;
+      border: none;
       border-top: 1px solid #ddd;  
-      margin-top: 10px; 
+      margin-top: 10px;
+      border-color: teal;
   }
 
   .label {
@@ -140,3 +122,34 @@ button {
     }
   }
 }
+
+@media (min-width: 1000px) {
+  .bottom-section {
+    display: flex;
+    justify-content: space-between;
+  }
+  .bottom-section button {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+    font-weight: 600;
+  }
+
+  .left-section {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-right: 15px;  // Some spacing between the sections
+    padding-top: 21px;
+  }
+
+  .history-container {
+    flex: 1;
+  }
+
+  .weights-container, .bottom-section button {
+    margin-bottom: 15px;  // Some space between the elements
+  }
+}
+
+
+
+
