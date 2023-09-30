@@ -1,4 +1,3 @@
-
 .welcomeContainer {
     display: flex;
     align-items: center;
@@ -137,7 +136,7 @@ button {
     display: flex;
     flex-direction: column;
     flex: 1;
-    margin-right: 15px;  // Some spacing between the sections
+    margin-right: 15px;  
     padding-top: 21px;
   }
 
@@ -146,7 +145,7 @@ button {
   }
 
   .weights-container, .bottom-section button {
-    margin-bottom: 15px;  // Some space between the elements
+    margin-bottom: 15px;  
   }
 }
 

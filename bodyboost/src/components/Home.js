@@ -3,19 +3,24 @@ import { useTranslation } from 'react-i18next';
 import History from './History';
 import '../styles/Home.scss';
 import { ThemeContext } from '../contexts/ThemeContext';
+import { UserContext } from '../contexts/UserContext';
+
 
 const Home = () => {
   const { t } = useTranslation();
   const { isDarkMode } = useContext(ThemeContext);
+  const { userData } = useContext(UserContext);
+  console.log(userData)
+
 
   const startWeight = "75kg";
-  const currentWeight = "70kg"; 
+  const currentWeight = "70"; 
   const goalWeight = "60kg"; 
   
   return (
     <div className='home-container'>
       <div className='welcomeContainer'>
-        <h1>{t('welcome_message')} BodyBoost</h1>
+        <h1>{t('welcome_message')} {userData.firstName}</h1>
         {/* <span className={`${isDarkMode? "darkNeon":"neonText"}`}>BodyBoost</span> */}
       </div>
       <div className='description-container'>
@@ -30,15 +35,15 @@ const Home = () => {
         <div className="left-section">   
           <div className='weights-container'>
             <div className='weight-entry'>
-              <div>{startWeight}</div>
+              <div>{userData.startingWeight}lbs</div>
               <label>Start weight</label>
             </div>
             <div className='weight-entry'>
-              <div>{currentWeight}</div>
+              <div>{currentWeight}lbs</div>
               <label>Current weight</label>
             </div>
             <div className='weight-entry'>
-              <div>{goalWeight}</div>
+              <div>{userData.goalWeight} lbs</div>
               <label>Goal weight</label>
             </div>
           </div>
@@ -54,3 +59,7 @@ const Home = () => {
 }
 
 export default Home;
+//To do:
+//Personalized greeting
+//add tips or recommendations
+//add modal for weights

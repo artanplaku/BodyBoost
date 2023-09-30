@@ -1,7 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import { useNavigate } from "react-router-dom"
 import "../styles/GoalAndProfile.scss";
+import { UserContext } from '../contexts/UserContext';
 
 const GoalAndProfile = () => {
+  const { setUserData } = useContext(UserContext);
+
   const [gender, setGender] = useState('');   
 //   const [height, setHeight] = useState('');
   const [age, setAge] = useState('');
@@ -10,6 +14,8 @@ const GoalAndProfile = () => {
   const [feet, setFeet] = useState('');
   const [inches, setInches] = useState('');
   const [progress, setProgress] = useState(0);
+
+  const navigate = useNavigate()
   
   const tempValuesRef = useRef({
     age: "",
@@ -20,6 +26,16 @@ const GoalAndProfile = () => {
   const handleGenderClick = (selectedGender) => {
     setGender(selectedGender);
   };
+
+  const handleSubmit = () => {
+    setUserData(prevData => ({
+      ...prevData,
+      startingWeight: weight,
+      goalWeight: goal
+  }));
+    navigate("/register")
+  }
+
 
   useEffect(() => {
     let newProgress = 0;
@@ -100,7 +116,7 @@ const GoalAndProfile = () => {
             onBlur={() => setGoal(tempValuesRef.current.weightGoal)}
             className="goal-input"
         />
-
+        <button className='form-button' onClick={handleSubmit}>Next</button>
 
     </div>
   );
