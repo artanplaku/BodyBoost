@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import History from './History';
+import Modal from './Modal';
 import '../styles/Home.scss';
 import { ThemeContext } from '../contexts/ThemeContext';
 import { UserContext } from '../contexts/UserContext';
@@ -8,6 +9,7 @@ import { UserContext } from '../contexts/UserContext';
 
 const Home = () => {
   const { t } = useTranslation();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { isDarkMode } = useContext(ThemeContext);
   const { userData } = useContext(UserContext);
   console.log(userData)
@@ -47,7 +49,8 @@ const Home = () => {
               <label>Goal weight</label>
             </div>
           </div>
-          <button>Add a weight entry</button>
+          <button onClick={() => setIsModalOpen(true)}>Add a weight entry</button>
+          <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
         </div>  
         <div className='history-container'>
           <History />
