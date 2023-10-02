@@ -39,7 +39,12 @@ const NameForm = () => {
         />
         <label htmlFor="firstname">First Name</label>
       </div>
-      <button className='form-button' onClick={handleSubmit}>Next</button>
+            <button 
+            className={`form-button fade-in-out ${firstName.trim() ? 'visible' : ''}`} 
+            onClick={handleSubmit}
+          >
+            Next
+          </button>
     </div>
   );
 };
