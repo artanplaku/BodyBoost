@@ -5,6 +5,8 @@ import '../styles/Register.scss'
 import { useTranslation } from 'react-i18next';
 import { ThemeContext } from '../contexts/ThemeContext';
 import clock from "../assets/images/clock.png"
+import { UserContext } from '../contexts/UserContext';
+
 
 const Register = () => {
   const { t } = useTranslation();
@@ -13,6 +15,13 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
   const { isDarkMode } = useContext(ThemeContext);
+  const { userData } = useContext(UserContext);
+
+  // const firstName = userData.firstName;
+  // const startingWeight = userData.startingWeight; 
+  // const goalWeight = userData.goalWeight;
+
+
 
   const validateForm = () => {
     let formErrors = {};
@@ -64,6 +73,25 @@ const Register = () => {
       axios.post('https://bodyboostbackend.onrender.com/api/users/register', registerData)
         .then(res => {
           console.log(res.data);
+
+          const token = res.data.token;
+          const profileData = {
+            firstName: userData.firstName,
+            startingWeight: userData.startingWeight,
+            currentWeight: userData.startingWeight,
+            goalWeight: userData.goalWeight
+        };
+        axios.post('https://bodyboostbackend.onrender.com/api/userProfile', profileData, {
+            headers: {
+              'Authorization': `Bearer ${token}` 
+                }
+              })
+            .then(response => {
+              console.log('Profile created/updated:', response.data);
+                })
+            .catch(err => {
+               console.error('Error creating/updating profile:', err);
+                });
         })
         .catch(err => {
           console.error(err);

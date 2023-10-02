@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import History from './History';
 import Modal from './Modal';
@@ -11,13 +12,47 @@ const Home = () => {
   const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { isDarkMode } = useContext(ThemeContext);
-  const { userData } = useContext(UserContext);
+  const { userData, setUserData } = useContext(UserContext);
+  const [weightInput, setWeightInput] = useState('');  
+  const [dateInput, setDateInput] = useState('');  
+
   console.log(userData)
 
+  useEffect(() => {
+    const token = localStorage.getItem('token'); 
+    axios.get('https://bodyboostbackend.onrender.com/api/userProfile', {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then(response => {
+        const profileData = response.data;
+        setUserData(profileData);
+    })
+    .catch(err => {
+        console.error('Error fetching user profile:', err);
+    });
+}, []);
 
-  const startWeight = "75kg";
-  const currentWeight = "70"; 
-  const goalWeight = "60kg"; 
+const submitWeightUpdate = () => {
+  const token = localStorage.getItem('token');
+  axios.put('https://bodyboostbackend.onrender.com/api/userProfile', {
+      currentWeight: weightInput, 
+      lastUpdated: dateInput
+  }, {
+      headers: {
+          'Authorization': `Bearer ${token}`
+      }
+  })
+  .then(response => {
+    setIsModalOpen(false);
+    setUserData(prevData => ({ ...prevData, currentWeight: weightInput, lastUpdated: dateInput }));
+  })
+  .catch(error => {
+      console.error('Error updating weight:', error);
+  });
+}
+
   
   return (
     <div className='home-container'>
@@ -41,16 +76,24 @@ const Home = () => {
               <label>Start weight</label>
             </div>
             <div className='weight-entry'>
-              <div>{currentWeight}lbs</div>
+              <div>{userData.currentWeight}lbs</div>
               <label>Current weight</label>
             </div>
             <div className='weight-entry'>
-              <div>{userData.goalWeight} lbs</div>
+              <div>{userData.goalWeight}lbs</div>
               <label>Goal weight</label>
             </div>
           </div>
           <button onClick={() => setIsModalOpen(true)}>Add a weight entry</button>
-          <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+          <Modal 
+          isOpen={isModalOpen} 
+          onClose={() => setIsModalOpen(false)}
+          weightInput={weightInput} 
+          setWeightInput={setWeightInput}
+          dateInput={dateInput}
+          setDateInput={setDateInput}
+          onSubmit={submitWeightUpdate} 
+          />
         </div>  
         <div className='history-container'>
           <History />

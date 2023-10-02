@@ -5,6 +5,8 @@
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
     h1 {
       margin-right: 8px; 
     }
@@ -149,6 +151,30 @@ button {
   }
 }
 
+@media(max-width: 480px){
+  .home-container{
+    margin-right: -75px;
+  }
+  .welcomeContainer{
+    margin-left: 0;
+  }
+}
 
+.home-container{
+  // width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  // align-items: center;
+  // margin: 0;
+  padding: 0;
+  padding-top: 20px;
+  // margin-right: -75px;
+}
 
-
+.left-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;  
+  padding-top: 21px;
+}
