@@ -28,7 +28,7 @@ const handleSubmit = (event) => {
             console.log(res.data);
             localStorage.setItem('token', res.data.token);
             setLoggedIn(true);
-            navigate('/workouts');
+            navigate('/home');
         })
         .catch(err => {
           console.error(err);

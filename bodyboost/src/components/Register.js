@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Register.scss'
 import { useTranslation } from 'react-i18next';
 import { ThemeContext } from '../contexts/ThemeContext';
@@ -16,6 +16,8 @@ const Register = () => {
   const [errors, setErrors] = useState({});
   const { isDarkMode } = useContext(ThemeContext);
   const { userData } = useContext(UserContext);
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+  const navigate = useNavigate();
 
   // const firstName = userData.firstName;
   // const startingWeight = userData.startingWeight; 
@@ -88,6 +90,10 @@ const Register = () => {
               })
             .then(response => {
               console.log('Profile created/updated:', response.data);
+              setShowSuccessAlert(true);  
+              setTimeout(() => {
+                  navigate('/login');
+              }, 3000);
                 })
             .catch(err => {
                console.error('Error creating/updating profile:', err);
@@ -123,6 +129,11 @@ const Register = () => {
 
   return (
     <div className={`register-container ${isDarkMode ? 'dark-mode' : ''}`}>
+      {showSuccessAlert && (  
+          <div className="success-alert">
+              Registration successful!
+          </div>
+      )}
       <div className='register-wrapper'>
       <div className="register-header">
     <img src={clock} alt="register" className="register-image"/>
