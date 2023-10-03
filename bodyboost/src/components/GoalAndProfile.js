@@ -116,7 +116,13 @@ const GoalAndProfile = () => {
             onBlur={() => setGoal(tempValuesRef.current.weightGoal)}
             className="goal-input"
         />
-        <button className='form-button' onClick={handleSubmit}>Next</button>
+        <button 
+          className={`form-button fade-in-out ${goal.trim() ? 'visible' : ''}`} 
+          onClick={handleSubmit}
+        >
+          Next
+        </button>
+
 
     </div>
   );
