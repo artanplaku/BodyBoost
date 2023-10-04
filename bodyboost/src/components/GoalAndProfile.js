@@ -111,11 +111,11 @@ const GoalAndProfile = () => {
        <input 
             type="number" 
             placeholder="Enter your weight goal" 
-            defaultValue={goal}
-            onChange={(e) => tempValuesRef.current.weightGoal = e.target.value}
-            onBlur={() => setGoal(tempValuesRef.current.weightGoal)}
+            value={goal}  
+            onChange={(e) => setGoal(e.target.value)}  
             className="goal-input"
         />
+
         <button 
           className={`form-button fade-in-out ${goal.trim() ? 'visible' : ''}`} 
           onClick={handleSubmit}
