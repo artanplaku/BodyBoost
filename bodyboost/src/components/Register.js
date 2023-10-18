@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { ThemeContext } from '../contexts/ThemeContext';
 import clock from "../assets/images/clock.png"
 import { UserContext } from '../contexts/UserContext';
+import { AuthContext } from '../contexts/AuthContext';
 
 
 const Register = () => {
@@ -16,6 +17,7 @@ const Register = () => {
   const [errors, setErrors] = useState({});
   const { isDarkMode } = useContext(ThemeContext);
   const { userData } = useContext(UserContext);
+  const { setLoggedIn } = useContext(AuthContext);
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const navigate = useNavigate();
 
@@ -125,6 +127,27 @@ const Register = () => {
         });
     }
   };
+
+  const handleGuestLogin = () => {
+    const guestLoginData = {
+        username: "testuser",
+        password: "12345678"
+    };
+
+    axios.post('https://bodyboostbackend.onrender.com/api/users/login', guestLoginData)
+        .then(res => {
+            console.log(res.data);
+            localStorage.setItem('token', res.data.token);
+            setLoggedIn(true);
+            navigate('/home');
+
+        })
+        .catch(err => {
+            console.error(err);
+            alert('Error logging in as guest.');
+        });
+}
+
   
 
   return (
@@ -169,7 +192,9 @@ const Register = () => {
           <Link to='/login'>{t('Register.login')}</Link>
         </div>
       </form>
+      <button type="button" onClick={handleGuestLogin}>Login as Guest</button>
       </div>
+
     </div>
   )
 }
