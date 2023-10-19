@@ -5,6 +5,7 @@ import "../styles/Progress.scss"
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight, faChevronDown, faUpload, faFile } from '@fortawesome/free-solid-svg-icons';
+import placeholder from '../assets/images/placeholder.png'
 
 function Progress() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -131,12 +132,18 @@ return (
     )}
     </div>
 
-    {images[currentIndex] && (
-      <div className="image-wrapper">
-        <img src={images[currentIndex].dataUrl} alt={`img-${currentIndex}`} className="image" />
-        <button className="delete-btn" onClick={() => deleteImage(images[currentIndex]._id)}>Delete</button>
-      </div>
-    )}
+    {images.length === 0 ? (
+  <div className="image-wrapper">
+    <img src={placeholder} alt="No progress pictures yet" className="image" />
+    <p className="placeholder-caption">No progress pictures yet. Add one!</p>
+  </div>
+) : (
+  <div className="image-wrapper">
+    <img src={images[currentIndex].dataUrl} alt={`img-${currentIndex}`} className="image" />
+    <button className="delete-btn" onClick={() => deleteImage(images[currentIndex]._id)}>Delete</button>
+  </div>
+)}
+
     
     <div className="carousel-indicators">
       {images.map((_, index) => (
