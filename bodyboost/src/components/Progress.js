@@ -84,8 +84,8 @@ function Progress() {
             },
         });
         fetchImages();  // Refresh the images after deletion
-        if (currentIndex >= images.length - 1) { 
-          setCurrentIndex(images.length - 2);
+        if (currentIndex >= images.length) { 
+          setCurrentIndex(images.length - 1);
       }
     } catch (error) {
         console.error(error);
