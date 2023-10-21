@@ -16,26 +16,24 @@ $border-color: #ccc;
     max-width: 100%;
     width: 500px;
     height: 500px;
-    margin: 0 auto;
     object-fit: cover;
 }
 
 .image-wrapper {
     margin-bottom: 20px;
     position: relative;
+    width: 500px;
+    margin: 0 auto;
 }
 
 .dropdown-container {
-    position: relative;
-    align-self: flex-start;
-    margin-left: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
     z-index: 10;
 }
 
 .dropdown-trigger {
-    margin-left: auto;
-    margin-right: 20px;
-    margin-bottom: 10px;
     cursor: pointer;
     background-color: #0d437d;
     color: white;
@@ -77,14 +75,12 @@ $border-color: #ccc;
     &:hover {
         background-color: $hover-bg-color;
     }
-    
-    i {
-        margin-right: 5px;
-    }
 }
 
 .carousel-indicators {
     display: flex;
+    justify-content: center;
+    width: 100%;
     gap: 5px;
 
     .indicator {
@@ -119,6 +115,6 @@ $border-color: #ccc;
 .placeholder-caption {
     text-align: center;
     margin-top: 10px;
-    
-  }
+}
+
   
