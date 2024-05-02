@@ -276,6 +276,7 @@ return (
                     isEditing={isEditing}
                     handleDeleteExercise={handleDeleteExercise}
                     handleAddExercise={handleAddExercise}
+                    editingWorkoutId={editingWorkoutId}
                 />
                 ))}
             </div>

@@ -1,8 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { useDrag } from 'react-dnd';
 import { useTranslation } from 'react-i18next';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
-const WorkoutItem = ({ workout, day, handleCircleClick, handleEdit, handleDelete, clickedExercises }) => {
+const WorkoutItem = ({ workout, day, handleCircleClick, handleEdit, handleDelete, clickedExercises, isEditing, editingWorkoutId  }) => {
+
     const { t } = useTranslation();
     const [{ isDragging }, drag] = useDrag({
         type: 'WORKOUT',
@@ -11,6 +14,10 @@ const WorkoutItem = ({ workout, day, handleCircleClick, handleEdit, handleDelete
             isDragging: !!monitor.isDragging(),
         }),
     });
+
+    const handleEditClick = () => {
+        handleEdit(workout);
+    };
 
     return (
         <div ref={drag} key={workout._id} style={{ opacity: isDragging ? 0.5 : 1 }}>
@@ -25,8 +32,8 @@ const WorkoutItem = ({ workout, day, handleCircleClick, handleEdit, handleDelete
                 </div>
             ))}
             <div className="button-container">
-                <button onClick={() => handleEdit(workout)}>{t('workouts.edit')}</button>
-                <button onClick={() => handleDelete(workout._id)}>{t('workouts.delete')}</button>
+            <FontAwesomeIcon icon={faEdit} onClick={handleEditClick} />
+            {isEditing && editingWorkoutId === workout._id && <FontAwesomeIcon icon={faTrashAlt} onClick={() => handleDelete(workout._id)} />}
             </div>
         </div>
     );

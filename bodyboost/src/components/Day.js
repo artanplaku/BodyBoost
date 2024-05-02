@@ -21,7 +21,8 @@ const Day = ({
     handleExerciseChange,
     isEditing,
     handleDeleteExercise,
-    handleAddExercise
+    handleAddExercise,
+    editingWorkoutId
 }) => {
     const [{ isOver }, drop] = useDrop({
         accept: 'WORKOUT',
@@ -96,6 +97,8 @@ const Day = ({
                     handleEdit={handleEdit}
                     handleDelete={handleDelete}
                     clickedExercises={clickedExercises}
+                    isEditing={isEditing}
+                    editingWorkoutId={editingWorkoutId}
                 />
             ))}
         </div>
