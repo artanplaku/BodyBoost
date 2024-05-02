@@ -8,7 +8,8 @@
     align-items: center;
     justify-content: center;
     h1 {
-      margin-right: 8px; 
+      margin-right: 8px;
+      color: gold; 
     }
   
     .neonText {
@@ -48,6 +49,7 @@
   justify-content: center;
   padding-bottom: 20px;
   margin-top: -25px;
+  color: whitesmoke;
 }
 
 .weights-container {
@@ -115,11 +117,13 @@ button {
     
 
     &.label-left {
-      left: 25%;  
+      left: 25%;
+      color: gold;  
     }
 
     &.label-right {
-      right: 25%;  
+      right: 25%;
+      color: gold;  
     }
   }
 }
