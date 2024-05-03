@@ -11,6 +11,13 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+.difficulty-title{
+  color: gold;
+}
+.muscles-title{
+  color: gold;
+}
+
 .exercises-container,
 .muscles-container {
   display: flex;
@@ -145,6 +152,44 @@ body {
   height: auto;
   margin-top: 10px;
 }
+
+
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;  
+  padding: 10px 0;  
+}
+
+.pagination button {
+  background-color: #fff;  
+  color: #333; 
+  border: 1px solid #ccc;  
+  border-radius: 4px; 
+  padding: 8px 12px;  
+  margin-right: 5px;  
+  cursor: pointer;
+  outline: none; 
+  transition: background-color 0.3s, color 0.3s;
+
+  &:hover {
+    background-color: #e0e0e0; 
+    color: #000; 
+  }
+
+  &.active {
+    background-color: #007bff;  
+    color: #fff;  
+    border-color: #007bff;  
+  }
+
+  &:last-child {
+    margin-right: 0;  
+  }
+}
+
+
 
 @media screen and (max-width: 390px) {
   .difficulty-container{
