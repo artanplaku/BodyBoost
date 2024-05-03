@@ -31,9 +31,9 @@ const Exercises = () => {
       "abductors",
       "triceps",
       "chest",
-      "lower_back",
+      "lower back",
       "traps",
-      "middle_back",
+      "middle back",
       "lats",
       "neck",
     ];
@@ -163,7 +163,7 @@ const Exercises = () => {
                             onClick={() => handleMuscleClick(index)}
                             style={getMuscleStyle(index)}
                         >
-                            {t(`exercises.muscle_${muscle}`)}
+                            {t(`exercises.muscle_${muscle.replace(/\s+/g, '_')}`)}
                         </div>
                     ))}
                 </div>
