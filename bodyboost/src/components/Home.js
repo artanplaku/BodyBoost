@@ -13,28 +13,51 @@ const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { isDarkMode } = useContext(ThemeContext);
   const { userData, setUserData } = useContext(UserContext);
+  const [weightEntries, setWeightEntries] = useState([]);
   const [weightInput, setWeightInput] = useState('');  
   const [dateInput, setDateInput] = useState('');  
 
   console.log(userData)
 
   useEffect(() => {
-    const token = localStorage.getItem('token'); 
+    const token = localStorage.getItem('token');
     axios.get('https://bodyboostbackend.onrender.com/api/userProfile', {
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
     })
-    .then(response => {
+      .then(response => {
         const profileData = response.data;
         setUserData(profileData);
-    })
-    .catch(err => {
+
+        if (profileData.weightHistory) {
+          const formattedHistory = profileData.weightHistory.map(entry => ({
+            ...entry,
+            date: new Date(entry.date).toLocaleDateString()
+          }));
+
+          setWeightEntries(formattedHistory);
+        } else {
+          const initialEntry = {
+            date: new Date(profileData.createdAt).toLocaleDateString(),
+            weight: profileData.startingWeight
+          };
+          setWeightEntries([initialEntry]);
+        }
+      })
+      .catch(err => {
         console.error('Error fetching user profile:', err);
-    });
-}, []);
+      });
+  }, [setUserData]);
 
 const submitWeightUpdate = () => {
+  if (!weightInput || !dateInput) {
+    console.error('Weight and date input are required');
+    return;
+  }
+
+  console.log('Submitting weight update:', { weightInput, dateInput });
+
   const token = localStorage.getItem('token');
   axios.put('https://bodyboostbackend.onrender.com/api/userProfile', {
       currentWeight: weightInput, 
@@ -45,8 +68,10 @@ const submitWeightUpdate = () => {
       }
   })
   .then(response => {
+    console.log('Weight update response:', response);
     setIsModalOpen(false);
     setUserData(prevData => ({ ...prevData, currentWeight: weightInput, lastUpdated: dateInput }));
+    setWeightEntries(prevEntries => [...prevEntries, { date: dateInput, weight: parseFloat(weightInput) }]);
   })
   .catch(error => {
       console.error('Error updating weight:', error);
@@ -94,9 +119,17 @@ const submitWeightUpdate = () => {
           setDateInput={setDateInput}
           onSubmit={submitWeightUpdate} 
           />
+      <h2>Weight History</h2>
+      <ul className='history-list'>
+        {weightEntries.map((entry, index) => (
+          <li key={index}>
+           {entry.date}: {entry.weight} lbs
+          </li>
+        ))}
+      </ul>
         </div>  
         <div className='history-container'>
-          <History />
+          <History data={weightEntries}/>
         </div>
       </div>
     </div>
@@ -105,7 +138,3 @@ const submitWeightUpdate = () => {
 }
 
 export default Home;
-//To do:
-//Personalized greeting
-//add tips or recommendations
-//add modal for weights
