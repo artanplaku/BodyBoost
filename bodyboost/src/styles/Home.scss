@@ -182,3 +182,44 @@ button {
   width: 100%;  
   padding-top: 21px;
 }
+
+.history-list {
+  margin: 20px 0; 
+  padding: 0 10%;
+  color: white; 
+  list-style-type: none; 
+}
+
+.history-list li {
+  padding: 5px 0; 
+  border-bottom: 1px solid rgba(220,220,220,0.5); 
+}
+
+.weight-history-title {
+  font-size: 24px; 
+  font-weight: bold; 
+  color: gold; 
+  text-align: center; 
+  margin-bottom: 15px; 
+}
+
+.history-container {
+  flex: 1;
+  padding: 20px; 
+  border-radius: 5px;
+}
+
+//  Styles for the History component */
+ .history {
+  margin: 20px 0;
+  padding: 20px;
+   background-color: rgba(250, 250, 250, 0.1);
+  border-radius: 5px;
+}
+
+.custom-tooltip {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+}

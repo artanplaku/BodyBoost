@@ -155,18 +155,36 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="custom-tooltip" style={{
+        backgroundColor: '#fff',
+        border: '1px solid #ccc',
+        padding: '10px',
+        borderRadius: '5px',
+      }}>
+        <p className="label">{`${label}`}</p>
+        <p className="intro">{`Weight: ${payload[0].value} lbs`}</p>
+      </div>
+    );
+  }
+
+  return null;
+};
+
 const History = ({ data }) => {
   return (
     <div className='history'>
       <ResponsiveContainer width="100%" height={400}>
         <ComposedChart data={data}>
-          <CartesianGrid stroke="#f5f5f5" />
-          <XAxis dataKey="date" />
-          <YAxis dataKey="weight" />
-          <Tooltip />
-          <Legend />
-          <Line type="monotone" dataKey="weight" stroke="#8884d8" />
-          <Scatter dataKey="weight" fill="red" />
+          <CartesianGrid strokeDasharray="3 3" stroke="#ccc" />
+          <XAxis dataKey="date" tick={{ fill: '#fff' }} />
+          <YAxis dataKey="weight" tick={{ fill: '#fff' }} />
+          <Tooltip content={<CustomTooltip />} />
+          <Legend verticalAlign="top" height={36} wrapperStyle={{ color: '#fff' }} />
+          <Line type="monotone" dataKey="weight" stroke="#82ca9d" strokeWidth={3} />
+          <Scatter  fill="#8884d8" />
         </ComposedChart>
       </ResponsiveContainer>
     </div>

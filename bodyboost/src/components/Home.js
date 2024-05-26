@@ -119,7 +119,7 @@ const submitWeightUpdate = () => {
           setDateInput={setDateInput}
           onSubmit={submitWeightUpdate} 
           />
-      <h2>Weight History</h2>
+      <h2 className='weight-history-title'>Weight History</h2>
       <ul className='history-list'>
         {weightEntries.map((entry, index) => (
           <li key={index}>
