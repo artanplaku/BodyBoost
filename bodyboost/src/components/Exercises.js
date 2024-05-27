@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import '../styles/Exercises.scss';
 import { useTranslation } from 'react-i18next';
 import { ThemeContext } from '../contexts/ThemeContext';
+import { WorkoutContext } from '../contexts/WorkoutContext';
+import axios from 'axios'; 
 
 const Exercises = () => {
     const [selectedDifficulty, setSelectedDifficulty] = useState(null);
@@ -14,28 +16,29 @@ const Exercises = () => {
     const [exercisesPerPage] = useState(10);
     const { isDarkMode } = useContext(ThemeContext);
     const { t } = useTranslation();
+    const { addWorkouts } = useContext(WorkoutContext);
 
     const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
     const difficulties = ["beginner", "intermediate", "expert"];
     const muscles = [
-      "abdominals",
-      "hamstrings",
-      "calves",
-      "shoulders",
-      "adductors",
-      "glutes",
-      "quadriceps",
-      "biceps",
-      "forearms",
-      "abductors",
-      "triceps",
-      "chest",
-      "lower back",
-      "traps",
-      "middle back",
-      "lats",
-      "neck",
+        "abdominals",
+        "hamstrings",
+        "calves",
+        "shoulders",
+        "adductors",
+        "glutes",
+        "quadriceps",
+        "biceps",
+        "forearms",
+        "abductors",
+        "triceps",
+        "chest",
+        "lower back",
+        "traps",
+        "middle back",
+        "lats",
+        "neck",
     ];
 
     useEffect(() => {
@@ -53,21 +56,20 @@ const Exercises = () => {
             method: "GET",
             headers: { "Content-Type": "application/json" }
         })
-        .then(res => {
-            if (!res.ok) {
-                throw new Error("Network response was not ok");
-            }
-            return res.json();
-        })
-        .then(data => {
-            console.log(data)
-            setExercises(data);
-            setLoading(false);
-        })
-        .catch(err => {
-            setError(err);
-            setLoading(false);
-        });
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return res.json();
+            })
+            .then(data => {
+                setExercises(data);
+                setLoading(false);
+            })
+            .catch(err => {
+                setError(err);
+                setLoading(false);
+            });
     }, [selectedDifficulty, selectedMuscle]);
 
     const handleDifficultyClick = index => {
@@ -82,11 +84,64 @@ const Exercises = () => {
         );
     };
 
-    const handleDaySelect = (exerciseName, day) => {
-        setSelectedDay({
-            ...selectedDay,
+    const handleDaySelect = async (exerciseName, day) => {
+        const exercise = exercises.find(ex => ex.name === exerciseName);
+        const newExercise = {
+            ...exercise,
+            sets: exercise.sets || 1, // Ensure default value if sets is not present
+            reps: exercise.reps || 10, // Ensure default value if reps is not present
+        };
+        const newWorkout = {
+            title: exercise.name,
+            exercises: [newExercise],
+            day: day,
+        };
+
+        console.log('Adding workout:', newWorkout); 
+
+        setSelectedDay(prevSelectedDay => ({
+            ...prevSelectedDay,
             [exerciseName]: day
-        });
+        }));
+
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                console.error('Token is missing.');
+                return;
+            }
+
+            const base64Url = token.split('.')[1];
+            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            let parsedToken;
+
+            try {
+                parsedToken = JSON.parse(window.atob(base64));
+                console.log('parsedToken:', parsedToken);
+            } catch (error) {
+                console.error('Error parsing token:', error);
+                return;
+            }
+
+            if (!parsedToken || !parsedToken.id) {
+                console.error('Invalid token:', parsedToken);
+                return;
+            }
+
+            newWorkout.userId = parsedToken.id;
+
+            const response = await axios.post('https://bodyboostbackend.onrender.com/api/workouts', newWorkout, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            addWorkouts([response.data]);
+            console.log('New workout added:', response.data);
+        } catch (error) {
+            console.error('Error adding workout:', error.response?.data || error.message);
+        }
     };
 
     const getDifficultyStyle = index => {
@@ -174,23 +229,14 @@ const Exercises = () => {
                         <div className="exercise-content">
                             <div className="title-container">
                                 <h2>{exercise.name}</h2>
-                                <div className="add-circle" onClick={(e) => {
-                                    e.stopPropagation();
-                                    setSelectedDay({
-                                        ...selectedDay,
-                                        [exercise.name]: selectedDay[exercise.name] ? null : daysOfWeek[0]
-                                    });
-                                }}>
+                                <div className="add-circle" onClick={() => setSelectedDay(prev => ({ ...prev, [exercise.name]: true }))}>
                                     +<span className="tooltip-text">{t('exercises.add_to_workouts')}</span>
                                 </div>
                                 {selectedDay[exercise.name] && (
                                     <div>
                                         <select
                                             value={selectedDay[exercise.name]}
-                                            onChange={(e) => {
-                                                e.stopPropagation(); 
-                                                handleDaySelect(exercise.name, e.target.value);
-                                            }}
+                                            onChange={(e) => handleDaySelect(exercise.name, e.target.value)}
                                             onClick={(e) => e.stopPropagation()}
                                         >
                                             <option value="">{t('exercises.select_a_day')}</option>
@@ -221,7 +267,7 @@ const Exercises = () => {
                 ))}
             </ul>
             <div className="pagination">
-            {renderPaginationButtons()}
+                {renderPaginationButtons()}
             </div>
         </div>
     );
