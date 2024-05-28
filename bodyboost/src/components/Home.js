@@ -122,7 +122,7 @@ const Home = () => {
 const deleteWeightEntry = (entryId) => {
   const token = localStorage.getItem('token');
 
-  axios.delete(`http://localhost:4000/api/userProfile/weightHistory/${entryId}`, {
+  axios.delete(`https://bodyboostbackend.onrender.com/api/userProfile/weightHistory/${entryId}`, {
     headers: {
       'Authorization': `Bearer ${token}`
     }

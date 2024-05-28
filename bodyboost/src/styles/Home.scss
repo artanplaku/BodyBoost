@@ -188,6 +188,8 @@ button {
   padding: 0 10%;
   color: white; 
   list-style-type: none; 
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .history-list li {
@@ -229,11 +231,6 @@ button {
 .history-list li div {
   flex: 1;
 }
-
-// .delete-icon {
-//   cursor: pointer;
-//   margin-left: 20px; 
-// }
 
 .delete-icon:hover {
   color: darkred;
