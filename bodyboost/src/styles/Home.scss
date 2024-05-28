@@ -192,7 +192,10 @@ button {
 
 .history-list li {
   padding: 5px 0; 
-  border-bottom: 1px solid rgba(220,220,220,0.5); 
+  border-bottom: 1px solid rgba(220,220,220,0.5);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .weight-history-title {
@@ -222,4 +225,16 @@ button {
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 5px;
+}
+.history-list li div {
+  flex: 1;
+}
+
+// .delete-icon {
+//   cursor: pointer;
+//   margin-left: 20px; 
+// }
+
+.delete-icon:hover {
+  color: darkred;
 }
